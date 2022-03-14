@@ -7,7 +7,7 @@
   Metalsmith bare-bones starter
 </h1>
 
-Start off your Metalsmith journey with this bare-bones boilerplate. This starter includes Markdown content and Nunjucks templating. 
+Start off your Metalsmith journey with this bare-bones boilerplate. This starter includes Markdown content and Nunjucks templating. Check out a [demo of this starter](https://metalsmith-bare-bones-starter.netlify.app/).
 
 ## Quick start
 
