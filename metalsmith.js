@@ -66,18 +66,6 @@ metalsmith
     inPlace(templateConfig)
   )
 
-    /*
-  .use(function plugin(files, metalsmith, done) {
-    console.log("running ms");
-  
-    Object.keys(files).forEach(file => {
-      console.log(files[file]);
-    });
-    done();
-    
-  })
-  */
-
   .use(permalinks())
 
   .use(
