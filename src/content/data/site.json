@@ -1,0 +1,16 @@
+{
+  "title": "Metalsmith Bare-bones Starter",
+  "description": "Metalsmith Starter with Nunjucks templating",
+  "author": "werner@glinka.co",
+  "siteURL": "https://ms-bare-bone-starter.netlify.app/",
+  "siteOwner": "Werner Glinka",
+  "validate": {
+    "google": "",
+    "ms": ""
+  },
+  "social": {
+    "linkedIn": "",
+    "github": ""
+  },
+  "socialImage": "/assets/images/metalsmith/starter/social.png"
+}
