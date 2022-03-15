@@ -15,4 +15,3 @@ seo:
 This Metalsmith starter website is intended to help you to get started with building a static site with Metalsmith. It uses Markdown to write content and the Nunjucks templating language to build pages.
 
 The rest is left to your imagination.
-

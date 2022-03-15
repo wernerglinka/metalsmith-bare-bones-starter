@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-const inPlace = require("@metalsmith/in-place");
+const Metalsmith = require("metalsmith");
+const markdown = require("@metalsmith/markdown");
 const layouts = require("@metalsmith/layouts");
 const drafts = require("@metalsmith/drafts");
 const permalinks = require("@metalsmith/permalinks");
@@ -10,10 +11,8 @@ const debugUI = require("metalsmith-debug-ui");
 const assets = require("metalsmith-assets");
 const metadata = require("metalsmith-metadata");
 const marked = require("marked");
-const Metalsmith = require("metalsmith");
 
 const { dependencies } = require("./package.json");
-const nodeVersion = process.version;
 const isProduction = process.env.NODE_ENV === "production";
 
 // functions to extend Nunjucks environment
@@ -57,6 +56,7 @@ metalsmith
   .clean(true)
   .metadata({
     msVersion: dependencies.metalsmith,
+    nodeVersion: process.version,
   })
 
   .use(when(isProduction, drafts()))
@@ -68,7 +68,7 @@ metalsmith
     })
   )
 
-  .use(inPlace(templateConfig))
+  .use(markdown())
 
   .use(permalinks())
 
