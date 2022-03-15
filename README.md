@@ -33,7 +33,7 @@ Start off your Metalsmith journey with this bare-bones boilerplate. This starter
 
     Your site is now running at `http://localhost:3000`!
 
-    Open the `new-site` directory in your code editor of choice and edit `src/content/index.md.njk`. Save your changes and the browser will update in real time!
+    Open the `new-site` directory in your code editor of choice and edit `src/content/index.md`. Save your changes and the browser will update in real time!
 
 ## What's included?
 
