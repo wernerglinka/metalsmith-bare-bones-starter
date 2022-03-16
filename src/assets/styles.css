@@ -60,9 +60,31 @@ img {
   height: auto;
   max-width: 500px;
 }
+img[src$='#full-width'] { 
+  max-width: 100%;
+}
 footer {
   background: #444;
   padding: 20px;
   color: #fff;
 }
 
+.gitter-invite {
+  text-decoration: none;
+  margin-top: 50px;
+  display: block;
+}
+.gitter-invite p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+}
+
+
+.gitter-invite img {
+  width: 40px;
+  display: inline-block;
+  margin: 0 10px;
+}

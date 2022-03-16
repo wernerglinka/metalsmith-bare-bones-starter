@@ -19,7 +19,7 @@
       "src",
       "templates"
     ],
-    "ext": "js scss njk json html md"
+    "ext": "js css scss njk json html md"
   },
   "devDependencies": {
     "browser-sync": "^2.27.7",
