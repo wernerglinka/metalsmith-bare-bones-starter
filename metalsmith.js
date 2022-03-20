@@ -7,7 +7,7 @@ const drafts = require("@metalsmith/drafts");
 const permalinks = require("@metalsmith/permalinks");
 const when = require("metalsmith-if");
 const htmlMinifier = require("metalsmith-html-minifier");
-const assets = require("metalsmith-assets");
+const assets = require("metalsmith-static-files");
 const metadata = require("metalsmith-metadata");
 
 const { dependencies } = require("./package.json");
@@ -64,8 +64,8 @@ Metalsmith(__dirname)
 
   .use(
     assets({
-      source: "./src/assets/",
-      destination: "./assets/",
+      source: "src/assets/",
+      destination: "assets/",
     })
   )
 
