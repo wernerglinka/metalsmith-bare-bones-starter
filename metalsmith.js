@@ -1,77 +1,73 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-const Metalsmith = require("metalsmith");
-const markdown = require("@metalsmith/markdown");
-const layouts = require("@metalsmith/layouts");
-const drafts = require("@metalsmith/drafts");
-const permalinks = require("@metalsmith/permalinks");
-const when = require("metalsmith-if");
-const htmlMinifier = require("metalsmith-html-minifier");
-const assets = require("metalsmith-static-files");
-const metadata = require("metalsmith-metadata");
+const Metalsmith = require('metalsmith')
+const markdown = require('@metalsmith/markdown')
+const layouts = require('@metalsmith/layouts')
+const drafts = require('@metalsmith/drafts')
+const permalinks = require('@metalsmith/permalinks')
+const metadata = require('@metalsmith/metadata')
+const when = require('metalsmith-if')
+const htmlMinifier = require('metalsmith-html-minifier')
+const assets = require('metalsmith-static-files')
+const { dependencies } = require('./package.json')
 
-const { dependencies } = require("./package.json");
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = process.env.NODE_ENV === 'production'
 
 // functions to extend Nunjucks environment
-const toUpper = string => string.toUpperCase();
-const spaceToDash = string => string.replace(/\s+/g, "-");
-const condenseTitle = string => string.toLowerCase().replace(/\s+/g, "");
-const UTCdate = date => date.toUTCString("M d, yyyy");
-const blogDate = date => date.toLocaleString("en-US", { year: "numeric", month: "long", day: "numeric" });
-const trimSlashes = string => string.replace(/(^\/)|(\/$)/g, "");
+const spaceToDash = (string) => string.replace(/\s+/g, '-')
+const condenseTitle = (string) => string.toLowerCase().replace(/\s+/g, '')
+const UTCdate = (date) => date.toUTCString('M d, yyyy')
+const blogDate = (date) => date.toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+const trimSlashes = (string) => string.replace(/(^\/)|(\/$)/g, '')
 
 // Define engine options for the inplace and layouts plugins
 const templateConfig = {
-  directory: "templates",
   engineOptions: {
     smartypants: true,
     smartLists: true,
     filters: {
-      toUpper,
       spaceToDash,
       condenseTitle,
       UTCdate,
       blogDate,
-      trimSlashes,
-    },
-  },
-};
+      trimSlashes
+    }
+  }
+}
 
 Metalsmith(__dirname)
-  .source("./src/content")
-  .destination("./build")
+  .source('./src/content')
+  .destination('./build')
   .clean(true)
+  .env('NODE_ENV', process.env.NODE_ENV)
+  .env('DEBUG', process.env.DEBUG)
   .metadata({
     msVersion: dependencies.metalsmith,
-    nodeVersion: process.version,
+    nodeVersion: process.version
   })
-
-  .use(when(isProduction, drafts()))
-
+  .use(drafts(!isProduction))
   .use(
     metadata({
-      site: "data/site.json",
-      nav: "data/navigation.json",
+      site: 'src/content/data/site.json',
+      nav: 'src/content/data/navigation.json'
     })
   )
-
   .use(markdown())
-
-  .use(permalinks())
-
+  .use(
+    permalinks({
+      relative: false
+    })
+  )
   .use(layouts(templateConfig))
-
   .use(
     assets({
-      source: "src/assets/",
-      destination: "assets/",
+      source: 'src/assets/',
+      destination: 'assets/'
     })
   )
-
   .use(when(isProduction, htmlMinifier()))
-  .build(err => {
+  .build((err) => {
     if (err) {
-      throw err;
+      throw err
     }
-  });
+  })
