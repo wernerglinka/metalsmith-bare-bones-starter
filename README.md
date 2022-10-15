@@ -35,6 +35,8 @@ Start off your Metalsmith journey with this bare-bones boilerplate. This starter
 
     Open the `new-site` directory in your code editor of choice and edit `src/content/index.md`. Save your changes and the browser will update in real time!
 
+1.  To tidy up your code with ESlint and Prettier, run: `npm run lint`.
+
 ## What's included?
 
 A quick look at the top-level files and directories you'll see in this Metalsmith project.
@@ -42,11 +44,12 @@ A quick look at the top-level files and directories you'll see in this Metalsmit
     .
     ├── node_modules
     ├── src
-    ├── templates
-    ├── .eslintrc.js
+    ├── layouts
+    ├── .eslintrc.yml
     ├── .gitignore
+    ├── .gitattributes
     ├── .prettierignore
-    ├── .prettierrc
+    ├── .prettierrc.yml
     ├── LICENSE
     ├── metalsmith.js
     ├── package-lock.json
@@ -57,15 +60,15 @@ A quick look at the top-level files and directories you'll see in this Metalsmit
 
 2.  **`/src`**: This directory will contain all the content that makes up your site.
 
-3.  **`/templates`**: This directory will contain all the templates and template partials that will be used to render your site.
+3.  **`/layouts`**: This directory will contain all the layouts partials that will be used to render your site.
 
-4.  **`/.eslintrc`**: This file contains all rules foir eslint.
+4.  **`/.eslintrc.js`**: This file contains all rules for eslint.
 
 5.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
 
-6.  **`.prettierignore`**: This file tells prettier what files it should ignore.
-
 7.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
+
+6.  **`.prettierignore`**: This file tells prettier what files it should ignore.
 
 8.  **`LICENSE`**: This Metalsmith starter is licensed under the MIT license.
 
