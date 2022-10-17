@@ -56,13 +56,13 @@ A quick look at the top-level files and directories you'll see in this Metalsmit
     ├── package.json
     └── README.md
 
-1.  **`/node_modules`**: This directory contains all the node modules that your project depends on.
+1.  **`node_modules`**: This directory contains all the node modules that your project depends on.
 
-2.  **`/src`**: This directory will contain all the content that makes up your site.
+2.  **`src`**: This directory will contain all the content that makes up your site.
 
-3.  **`/layouts`**: This directory will contain all the layouts partials that will be used to render your site.
+3.  **`layouts`**: This directory will contain all the layouts partials that will be used to render your site.
 
-4.  **`/.eslintrc.js`**: This file contains all rules for eslint.
+4.  **`.eslintrc.yml`**: This file contains all rules for eslint.
 
 5.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
 
