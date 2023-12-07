@@ -22,6 +22,7 @@ const trimSlashes = (string) => string.replace(/(^\/)|(\/$)/g, '')
 
 // Define engine options for the inplace and layouts plugins
 const templateConfig = {
+  directory: './src/layouts',
   engineOptions: {
     smartypants: true,
     smartLists: true,
