@@ -20,7 +20,7 @@ jobs:
       - name: create env file
         run: |
           touch .env
-          echo BASE_PATH=${{ vars.BASE_PATH }} >> .env
+          echo BASE_PATH="/my-website" >> .env
 
       - name: Build
         run: |
