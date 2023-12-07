@@ -10,6 +10,6 @@ seo:
 ---
 # Metalsmith Bare-bone Starter
 
-![](/assets/images/anvil-with-tools.jpg)
+![anvil and tools](anvil-with-tools.jpg)
 
 This Metalsmith starter website is intended to help you to get started with building a static site with Metalsmith. It uses Markdown to write content and the Nunjucks templating language to build pages.
