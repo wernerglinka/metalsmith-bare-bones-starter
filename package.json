@@ -39,6 +39,7 @@
     "@metalsmith/markdown": "^1.10.0",
     "@metalsmith/metadata": "^0.3.0",
     "@metalsmith/permalinks": "^2.5.1",
+    "dotenv": "^16.3.1",
     "jstransformer-nunjucks": "^1.2.0",
     "metalsmith": "^2.6.2",
     "metalsmith-html-minifier": "^4.0.1",

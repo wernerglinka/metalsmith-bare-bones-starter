@@ -17,6 +17,11 @@ jobs:
         with:
           node-version: '20.x'
 
+      - name: create env file
+        run: |
+          touch .env
+          echo BASE_PATH=${{ vars.BASE_PATH }} >> .env
+
       - name: Build
         run: |
           npm install

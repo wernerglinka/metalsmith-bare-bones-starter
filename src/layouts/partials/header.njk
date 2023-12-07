@@ -1,7 +1,7 @@
 <header>
   <div class="container">
     <div class="brand">
-      <a class="home-link" href="/"><img src="/assets/images/metalsmith-logo-bug.png" alt="Metalsmith Starter"/></a>
+      <a class="home-link" href="/"><img src="{{ basePath }}/assets/images/metalsmith-logo-bug.png" alt="Metalsmith Starter"/></a>
     </div>
 
     <div class="main-menu">
@@ -14,7 +14,7 @@
               {% else %}
                 {% set path = menuItem.url %}
               {% endif %}
-              <a href={{ menuItem.url}} class="{{ path | trimSlashes }}">{{ menuItem.label }}</a>
+              <a href={{ basePath }}{{ menuItem.url}} class="{{ path | trimSlashes }}">{{ menuItem.label }}</a>
             </div>
           </li>
         {% endfor %}

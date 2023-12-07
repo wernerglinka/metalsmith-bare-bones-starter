@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+require('dotenv').config();
 
 const Metalsmith = require('metalsmith')
 const markdown = require('@metalsmith/markdown')
@@ -36,6 +37,7 @@ const templateConfig = {
   }
 }
 
+
 Metalsmith(__dirname)
   .source('./src/content')
   .destination('./dist')
@@ -43,7 +45,8 @@ Metalsmith(__dirname)
   .env('NODE_ENV', process.env.NODE_ENV)
   .env('DEBUG', process.env.DEBUG)
   .metadata({
-    version
+    version,
+    basePath: process.env.BASE_PATH
   })
   .use(drafts(!isProduction))
   .use(
