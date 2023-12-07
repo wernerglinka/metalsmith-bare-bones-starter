@@ -64,7 +64,7 @@ img {
   height: auto;
   max-width: 500px;
 }
-img[src$='#full-width'] { 
+img[src$='#full-width'] {
   max-width: 100%;
 }
 footer {
@@ -72,24 +72,4 @@ footer {
   padding: 20px;
   color: #fff;
   margin-top: auto;
-}
-
-.gitter-invite {
-  text-decoration: none;
-  margin-top: 50px;
-  display: block;
-}
-.gitter-invite p {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  background-color: #f8f8f8;
-}
-
-
-.gitter-invite img {
-  width: 40px;
-  display: inline-block;
-  margin: 0 10px;
 }

@@ -1,12 +1,12 @@
 {
-  "name": "metalsmith-bare-bones-starter",
+  "name": "my-website",
   "version": "0.1.1",
-  "description": "A bare-bones Metalsmith starter",
+  "description": "My personal website",
   "keywords": [
     "metalsmith",
-    "starter"
+    "homepage"
   ],
-  "author": "werner@glinka.co",
+  "author": "me@andrekelling.de",
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=development NODE_PATH=./node_modules npm run watch & npm run serve",

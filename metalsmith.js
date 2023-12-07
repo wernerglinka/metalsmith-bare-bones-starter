@@ -9,7 +9,7 @@ const metadata = require('@metalsmith/metadata')
 const when = require('metalsmith-if')
 const htmlMinifier = require('metalsmith-html-minifier')
 const assets = require('metalsmith-static-files')
-const { dependencies } = require('./package.json')
+const { version } = require('./package.json')
 
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -42,14 +42,13 @@ Metalsmith(__dirname)
   .env('NODE_ENV', process.env.NODE_ENV)
   .env('DEBUG', process.env.DEBUG)
   .metadata({
-    msVersion: dependencies.metalsmith,
-    nodeVersion: process.version
+    version
   })
   .use(drafts(!isProduction))
   .use(
     metadata({
-      site: 'src/content/data/site.json',
-      nav: 'src/content/data/navigation.json'
+      site: 'src/metadata/site.json',
+      nav: 'src/metadata/navigation.json'
     })
   )
   .use(markdown())
