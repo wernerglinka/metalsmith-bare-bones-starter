@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 require("dotenv").config()
 
 const Metalsmith = require("metalsmith")
@@ -45,7 +44,9 @@ Metalsmith(__dirname)
   .env("DEBUG", process.env.DEBUG)
   .metadata({
     version,
-    basePath: process.env.BASE_PATH
+    basePath: process.env.BASE_PATH,
+    faviconHash: "QEMO20KRr9",
+    styleHash: "20231212"
   })
   .use(drafts(!isProduction))
   .use(
