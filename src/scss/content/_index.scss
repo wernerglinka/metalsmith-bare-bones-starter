@@ -1,0 +1,35 @@
+/* Content
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>*/
+.content {
+	> * {
+		margin-bottom: 20px;
+	}
+}
+
+/* Home
+   Error pages like: 404 and offline
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>*/
+
+.home,
+.error {
+	text-align: center;
+
+	h1 {
+		letter-spacing: .4em;
+		line-height: 25px;
+	}
+
+	h2 {
+		font-size: 10em;
+		font-weight: $fw-bold;
+		opacity: .4;
+
+		@include breakpoint($brk-l) {
+			font-size: 21em;
+		}
+	}
+}
+
+.error {
+	padding: 6em 0;
+}

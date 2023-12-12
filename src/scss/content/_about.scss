@@ -1,0 +1,108 @@
+/* About
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>*/
+.about-page {
+	p,
+	li {
+		margin: 0;
+		line-height: 17px;
+		list-style-type: none;
+	}
+
+	.content ul {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.about-pic {
+	margin: 2rem auto;
+	overflow: hidden;
+
+	> img {
+		cursor: none;
+	}
+
+	&__caption {
+		font-size: .75rem;
+		text-align: right;
+	}
+
+	a {
+		color: $c-lightblack;
+		text-decoration: underline;
+	}
+}
+
+.twocol.fleft > ul > li {
+	&:nth-child(4n+1) {
+		color: darken($c-middlegrey, 15);
+	}
+
+	&:nth-child(4n+3) {
+		font-style: oblique;
+		color: darken($c-middlegrey, 5);
+	}
+
+	&:nth-child(4n+4) {
+		color: lighten($c-middlegrey, 5);
+		margin-bottom: 16px;
+	}
+}
+.twocol.fright {
+	h2 {
+		color: $c-orange;
+	}
+	h3 {
+		line-height: 17px;
+		font-family: $f-main;
+		font-size: 16px;
+		color: $c-purple;
+		font-weight: $fw-bold;
+	}
+	> ul > li {
+		color: $c-lightorange;
+
+		&.per10 {
+			color: lighten($c-lightorange, 30%);
+		}
+
+		&.per20 {
+			color: lighten($c-lightorange, 20%);
+		}
+
+		&.per30 {
+			color: lighten($c-lightorange, 15%);
+		}
+
+		&.per40 {
+			color: lighten($c-lightorange, 10%);
+		}
+
+		&.per50 {
+			color: lighten($c-lightorange, 5%);
+		}
+
+		&.per60 {
+			color: darken($c-lightorange, 10%);
+		}
+
+		&.per70 {
+			color: darken($c-lightorange, 12%);
+		}
+
+		&.per80 {
+			color: darken($c-lightorange, 15%);
+			text-shadow: 0 0 3px $c-gold;
+		}
+
+		&.per90 {
+			color: darken($c-lightorange, 18%);
+			text-shadow: 0 0 3px $c-gold;
+		}
+
+		&.per100 {
+			color: darken($c-lightorange, 23%);
+			text-shadow: 0 0 1px $c-gold;
+		}
+	}
+}

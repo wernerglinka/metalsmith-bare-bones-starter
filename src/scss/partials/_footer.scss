@@ -1,0 +1,52 @@
+/* Footer
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>*/
+
+footer {
+	@include clear;
+	width: 100%;
+	min-width: 320px;
+	padding: 8px 0 4px;
+	background: rgba($c-grey, .8);
+	position: relative;
+	bottom: 0;
+	border-top: 1px solid $c-green;
+	box-shadow: 0 0 4px #999;
+	z-index: 99;
+	backdrop-filter: blur(5px);
+
+	ul {
+		margin: 0 20px;
+	}
+
+	li {
+		display: inline;
+		float: left;
+		margin-right: 40px;
+
+		i {
+			color: $c-green;
+		}
+
+		&.h {
+			margin-right: 20px;
+		}
+	}
+
+	@media (min-height: 606px) {
+		position: fixed;
+	}
+}
+
+// current footer style
+
+footer {
+  background: #444;
+  padding: 20px;
+  color: #fff;
+  margin-top: auto;
+}
+.credits {
+  font-style: italic;
+  font-weight: bold;
+}
+

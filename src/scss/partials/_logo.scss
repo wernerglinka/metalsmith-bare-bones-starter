@@ -1,0 +1,81 @@
+.logo {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	width: 111px;
+	z-index: 9; // higher than main menu
+
+	svg {
+		width: 100%;
+	}
+}
+
+$animationDelayLogo: 3s;
+
+.mouseDevice .logo {
+	transition: transform 11s $animationDelayLogo;
+
+	&:hover {
+		transform: scale3d(2, 2, 2) translateY(25%);
+	}
+}
+
+$colors: $c-lightorange, $c-lightpurple, $c-gold;
+$fillColors: $c-lightpurple, $c-gold, $c-lightorange;
+$max: 3;
+$stroke-step: 7%;
+
+.letter__bg {
+	.mouseDevice &__item {
+		shape-rendering: geometricPrecision;
+	}
+
+	.mouseDevice .logo:hover &__item {
+		stroke-dasharray: $stroke-step $stroke-step * ($max - 1);
+		stroke-width: 28px;
+		animation: stroke-offset 9s infinite linear 1s;
+		transition: fill 2s;
+
+		@for $item from 1 through $max {
+			$stroke-color: nth($colors, $item);
+			$fill-color: nth($colors, $item);
+			&:nth-child(#{$item}) {
+				stroke: $stroke-color;
+				stroke-dashoffset: $stroke-step * $item;
+				fill: $fill-color;
+			}
+		}
+
+		&.letter__bg__inner {
+			animation: stroke-offset 9s infinite linear 1s, heartbeatColor 2s infinite $animationDelayLogo;
+		}
+	}
+}
+
+@keyframes heartbeatColor {
+	0% {
+		fill: $c-gold;
+	}
+	20% {
+		fill: $c-lightorange;
+	}
+	40% {
+		fill: $c-gold;
+	}
+	60% {
+		fill: $c-lightorange;
+	}
+	80% {
+		fill: $c-gold;
+	}
+	100% {
+		fill: $c-gold;
+	}
+}
+
+@keyframes stroke-offset {
+	50% {
+		stroke-dashoffset: $stroke-step * $max;
+		stroke-dasharray: 0 $stroke-step * $max*2.5;
+	}
+}

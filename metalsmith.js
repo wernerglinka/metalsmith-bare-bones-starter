@@ -39,14 +39,15 @@ const templateConfig = {
 Metalsmith(__dirname)
   .source("./src/content")
   .destination("./dist")
-  .clean(true)
+  .clean(isProduction)
   .env("NODE_ENV", process.env.NODE_ENV)
   .env("DEBUG", process.env.DEBUG)
   .metadata({
     version,
     basePath: process.env.BASE_PATH,
     faviconHash: "QEMO20KRr9",
-    styleHash: "20231212"
+    styleHash: "20231212",
+    scriptHash: "20231212"
   })
   .use(drafts(!isProduction))
   .use(

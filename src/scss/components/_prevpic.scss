@@ -1,0 +1,52 @@
+.prevpic {
+	@include imageShadow();
+	max-width: 170px;
+
+	&__summary {
+		display: none;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -300%);
+		min-width: 80%;
+		padding-left: 4px;
+		letter-spacing: -1px;
+		background-color: $c-purple;
+		color: $c-white;
+		opacity: 0;
+		pointer-events: none;
+		z-index: 11;
+		transition: all .2s;
+
+		.mouseDevice & {
+			display: inline-block;
+		}
+	}
+
+	&:hover &__summary {
+		opacity: 1;
+		transform: translate(-20%, -50%);
+	}
+
+	.overview__link.active & &__summary {
+		opacity: 0;
+		// sync time with js and overview__link
+		animation: kf-summary .5s  ease-in;
+	}
+}
+
+@keyframes kf-summary {
+	0% {
+		transform: translate(-20%, -50%);
+		opacity: 1;
+	}
+
+	50% {
+		transform: translate(-40%, -90%);
+		opacity: .7;
+	}
+
+	100% {
+		transform: translate(-140%, -190%);
+	}
+}

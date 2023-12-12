@@ -1,0 +1,39 @@
+.svg-figure {
+    &--group {
+        margin: 1px;
+        &--fill {
+            opacity: .4;
+            fill: #00A256;
+            transition: opacity 3s, fill 5s;
+
+            &.green1 {
+                fill: #93C01F;
+            }
+            &.green2 {
+                fill: #3A673A;
+            }
+            &.green3 {
+                fill: #819371;
+            }
+            &.green4 {
+                fill: #00A256;
+            }
+            &.green5 {
+                fill: #4A671E;
+            }
+            &.green6 {
+                fill: #5FAD30;
+            }
+        }
+
+        &:hover  &--fill {
+            opacity: .6;
+            fill: lighten($c-lightpurple, 20) !important;
+            transition: opacity .3s, fill .3s;
+        }
+    }
+
+    .fill-line {
+        fill: $c-svg-black;
+    }
+}
