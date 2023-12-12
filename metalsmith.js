@@ -68,6 +68,12 @@ Metalsmith(__dirname)
       destination: "assets/"
     })
   )
+  .use(
+    assets({
+      source: "src/assets-root/",
+      destination: ""
+    })
+  )
   .use(when(isProduction, htmlMinifier()))
   .build((err) => {
     if (err) {

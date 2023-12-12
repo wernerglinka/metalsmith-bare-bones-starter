@@ -11,12 +11,11 @@
 
     <main id="main">
       <h1>{{ title }}</h1>
-    {% block body %}
-    {# will be replaced by page content #}
-    {% endblock %}
+      {% block body %}
+        {# will be replaced by page content #}
+      {% endblock %}
     </main>
 
     {% include "partials/footer.njk" %}
-
   </body>
 </html>
