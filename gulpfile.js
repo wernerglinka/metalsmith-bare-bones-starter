@@ -4,6 +4,7 @@ const svgmin = require('gulp-svgmin');
 const svgSymbols = require('gulp-svg-symbols');
 const imageminJpegRecompress = require('imagemin-jpeg-recompress');
 const imageminPngquant = require('imagemin-pngquant');
+const { exec } = require('child_process')
 
 const production = process.env.NODE_ENV === 'production';
 // const production = false;
@@ -41,7 +42,14 @@ const paths = {
   images: {
     src: srcDir + 'images-original/**/*',
     dist: outputDir + '/images'
-  }
+  },
+  site: [
+    srcDir + 'assets/**/*',
+    srcDir + 'assets-root/**/*',
+    srcDir + 'content/**/*',
+    srcDir + 'layout/**/*',
+    srcDir + 'metadata/**/*'
+  ]
 };
 
 /** JS **/
@@ -137,15 +145,23 @@ const svgsymbols = function() {
 
 exports.svgsymbols = svgsymbols;
 
+/** **/
+
+const buildMetalsmith = () => {
+  return exec('node metalsmith.js')
+}
+
 /** build **/
 
-const build = gulp.parallel(scripts, css, images, svgsymbols);
+const build = gulp.parallel(buildMetalsmith, scripts, css, images, svgsymbols);
 exports.build = build;
 
 /** watch **/
 
 const watch = function() {
   build()
+
+  gulp.watch(paths.site, buildMetalsmith);
 
   gulp.watch(paths.styles.watchSrc, gulp.series(stylelint, css));
 

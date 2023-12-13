@@ -8,7 +8,8 @@ This is my website build with the static website generator [metalsmith](https://
 
 ### Config
 
-- `metalsmith.js`: This is the Metalsmith build file.
+- `gulp.js`: this is main build tool file.
+- `metalsmith.js`: this is the Metalsmith build file.
 
 ### Serve
 
@@ -19,6 +20,7 @@ Edit `src/content/index.md`. Save your changes and the browser will update.
 ## Build 
 
 - `npm run build`
+- `npm run build:prod` for production build
 
 We have here assets which go into an `assets` sub dir in the `./dist` dir.
 There is also a `assets-root` dir which contents move direct into the root of the `dist` dir.
@@ -36,4 +38,4 @@ So not here!
 
 ## Deploy
 
-- todo
+- is done with GitHub actions
