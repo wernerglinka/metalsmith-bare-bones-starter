@@ -6,7 +6,7 @@ title: André J. Kelling
 seo:
   title: Home - André J. Kelling
   description: "This starter should get you up and running with your new favorite static site generator Metalsmith"
-  socialImage: "/assets/images/metalsmith-starter-social.png"
+  socialImage: "/assets/images/logo-andre_kelling.svg"
   canonicalOverwrite: ""
 ---
 

@@ -1,10 +1,11 @@
+const fs = require('fs')
+const { exec } = require('child_process');
 const gulp = require('gulp');
 const imagemin = require('gulp-imagemin');
 const svgmin = require('gulp-svgmin');
 const svgSymbols = require('gulp-svg-symbols');
 const imageminJpegRecompress = require('imagemin-jpeg-recompress');
 const imageminPngquant = require('imagemin-pngquant');
-const { exec } = require('child_process')
 
 const production = process.env.NODE_ENV === 'production';
 // const production = false;
@@ -21,10 +22,12 @@ const gulpStylelint = require('@ronilaukkarinen/gulp-stylelint'); // https://git
 const postcss = require("gulp-postcss");
 const cssnano = require("cssnano");
 const noop = require("gulp-noop");
+const { criticalCssPath, browserSyncPort } = require('./config')
+const browserSync = require('browser-sync').create();
 
 const srcDir = './src/',
   svgOriginalFiles = srcDir + 'svg-original/**/*',
-  outputDir = './dist';
+  outputDir = srcDir + 'assets';
 
 const paths = {
   styles: {
@@ -54,7 +57,7 @@ const paths = {
 
 /** JS **/
 
-function scripts() {
+const scripts = () => {
   console.log('production:', production)
   return (
 
@@ -86,7 +89,7 @@ const postCssPlugins = [
   production ? cssnano() : false
 ].filter(Boolean);
 
-function css() {
+const css = () => {
   return gulp
     .src(paths.styles.src)
     .pipe(!production ? sourcemaps.init({loadMaps: true}) : noop())
@@ -98,7 +101,7 @@ function css() {
 
 exports.css = css;
 
-function stylelint() {
+const stylelint = () => {
   return gulp.src(paths.styles.watchSrc)
     .pipe(gulpStylelint({
       failAfterError: false,
@@ -112,7 +115,7 @@ exports.stylelint = stylelint;
 
 /** images **/
 
-const  images = function() {
+const images = () => {
   return gulp.src(paths.images.src)
     .pipe(imagemin([
       imageminJpegRecompress({
@@ -132,7 +135,7 @@ exports.images = images;
 
 /** svg symbols **/
 
-const svgsymbols = function() {
+const svgsymbols = () => {
   return gulp.src(svgOriginalFiles)
     .pipe(svgmin())
     .pipe(svgSymbols({
@@ -145,33 +148,97 @@ const svgsymbols = function() {
 
 exports.svgsymbols = svgsymbols;
 
-/** **/
+/**
+ * metalsmith build
+ *
+ * does clean up the dir!
+ * copies to ./dist
+ **/
 
-const buildMetalsmith = () => {
-  return exec('node metalsmith.js')
+const buildMetalsmith = (done) => {
+  exec('node metalsmith.js', (err, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stderr);
+    done(err);
+  });
+}
+
+/**
+ * critical css
+ *
+ * needs to run when serving
+ **/
+
+const removeCriticalCss = (done) => {
+  console.log(criticalCssPath)
+  try {
+    fs.unlinkSync(criticalCssPath);
+  } catch(err) {
+    console.log(err.message)
+  } finally {
+    done();
+  }
+}
+
+const criticalCss = (done) => {
+  exec("env DEBUG='penthouse,penthouse:*' node penthouse.config.js", (err, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stderr);
+    done(err);
+  })
+}
+
+const serve = (done) => {
+  browserSync.init({
+    server: {
+      baseDir: "./dist"
+    },
+    port: browserSyncPort,
+    open: false
+  });
+  done();
+}
+const serveStop = (done) => {
+  browserSync.exit();
+  done();
 }
 
 /** build **/
 
-const build = gulp.parallel(buildMetalsmith, scripts, css, images, svgsymbols);
+const build = gulp.series(
+  gulp.parallel(scripts, css, images, svgsymbols),
+  buildMetalsmith
+);
 exports.build = build;
+
+const buildProd = gulp.series(
+  removeCriticalCss,
+  build,
+  serve,
+  criticalCss,
+  serveStop,
+  build
+);
+
+exports.buildProd = buildProd;
 
 /** watch **/
 
-const watch = function() {
-  build()
+const watch = () => {
+  build
 
   gulp.watch(paths.site, buildMetalsmith);
 
-  gulp.watch(paths.styles.watchSrc, gulp.series(stylelint, css));
+  // TODO just copy new build artifacts (styles, scripts, images) to dist. not whole metalsmith build
+  gulp.watch(paths.styles.watchSrc, gulp.series(stylelint, css, buildMetalsmith));
 
-  gulp.watch(paths.scripts.src, scripts);
+  gulp.watch(paths.scripts.src, scripts, buildMetalsmith);
 
-  gulp.watch(paths.images.src, images);
+  gulp.watch(paths.images.src, images, buildMetalsmith);
 }
 
 exports.watch = watch;
 
-exports.default = gulp.series(build, watch);
+exports.default = watch;
 
 

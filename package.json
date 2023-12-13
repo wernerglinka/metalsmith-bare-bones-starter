@@ -12,10 +12,10 @@
   "scripts": {
     "images": "gulp images",
     "icons": "gulp svgsymbols",
-    "watch": "gulp watch",
+    "watch": "gulp",
     "build": "gulp build",
-    "build:prod": "cross-env NODE_ENV=production gulp build",
-    "criticalCss": "env DEBUG='penthouse,penthouse:*' node penthouse.config.js",
+    "build:prod": "cross-env NODE_ENV=production gulp buildProd",
+    "build:metalsmith": "node metalsmith.js",
     "lint": "eslint --fix . & gulp stylelint",
     "serve": "browser-sync start --server 'dist' --files 'dist/**' --no-open",
     "start": "cross-env NODE_ENV=development NODE_PATH=./node_modules npm run watch & npm run serve"

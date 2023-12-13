@@ -38,10 +38,6 @@ node_modules/
 # dotenv environment variable files
 .env*
 
-# metalsmith files
-.cache/
-dist/
-
 # Mac files
 .DS_Store
 
@@ -51,3 +47,13 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+# metalsmith files
+.cache/
+
+# build files
+dist/
+src/assets/**/*
+!src/assets/icons
+!src/assets/fonts
+src/layouts/critical.css

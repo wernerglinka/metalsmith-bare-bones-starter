@@ -38,3 +38,8 @@
 <link rel="preload" href="{{ basePath }}/style.css?v={{ styleHash }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="{{ basePath }}/style.css?v={{ styleHash }}"></noscript>
 <script src="{{ basePath }}/s.js?v={{ scriptHash }}" async></script>
+
+<style>
+  {{ criticalCss | safe }}
+</style>
+
