@@ -2,17 +2,17 @@
 
 This is my website build with the static website generator [metalsmith](https://metalsmith.io/).
 
-## Dev
-
-- `npm start` is doing watching and serving
-
-### Config
+## Config
 
 - `config.js`: storing simple props for the various build files
 - `gulp.js`: this is main build tool file.
 - `postcss.config.js`: this is a helper config for gulp style building.
 - `metalsmith.js`: this is the Metalsmith build tool file.
 - `penthouse.config.js`: this is the critical CSS build tool file.
+
+## Dev
+
+- `npm start` is doing watching and serving
 
 ### Serve
 

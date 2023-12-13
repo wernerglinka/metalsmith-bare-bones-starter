@@ -34,10 +34,9 @@
 <meta property="og:site_name" content="{{ site.title }}"/>
 <meta property="og:image" content="{{ basePath }}{{ seo.socialImage }}"/>
 <meta property="og:updated_time" content=""/>
-
-<link rel="preload" href="{{ basePath }}/style.css?v={{ styleHash }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ basePath }}/style.css?v={{ styleHash }}"></noscript>
-<script src="{{ basePath }}/s.js?v={{ scriptHash }}" async></script>
+<link rel="preload" href="{{ basePath }}/assets/style.css?v={{ styleHash }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ basePath }}/assets/style.css?v={{ styleHash }}"></noscript>
+<script src="{{ basePath }}/assets/s.js?v={{ scriptHash }}" async></script>
 
 <style>
   {{ criticalCss | safe }}
