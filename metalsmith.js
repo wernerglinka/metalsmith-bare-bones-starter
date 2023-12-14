@@ -43,11 +43,11 @@ const templateConfig = {
 const loadCriticalCss = () => {
   const fs = require('fs');
   try {
-    const criticalCss = fs.readFileSync(criticalCssPath, 'utf8');
+    let criticalCss = fs.readFileSync(criticalCssPath, 'utf8');
 
     if (basePath) {
       const replacePath = "/assets/fonts";
-      criticalCss.replaceAll(replacePath, basePath + replacePath)
+      criticalCss = criticalCss.replaceAll(replacePath, basePath + replacePath)
     }
 
     console.log("criticalCss content",  CYAN_START, criticalCss, COLOR_END);
