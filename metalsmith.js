@@ -13,7 +13,7 @@ const { version } = require("./package.json")
 const { criticalCssPath } = require('./config')
 
 const isProduction = process.env.NODE_ENV === "production"
-
+const basePath = process.env.BASE_PATH || ""
 const CYAN_START = '\x1b[36m';
 const COLOR_END = '\x1b[0m';
 
@@ -45,6 +45,11 @@ const loadCriticalCss = () => {
   try {
     const criticalCss = fs.readFileSync(criticalCssPath, 'utf8');
 
+    if (basePath) {
+      const replacePath = "/assets/fonts";
+      criticalCss.replaceAll(replacePath, basePath + replacePath)
+    }
+
     console.log("criticalCss content",  CYAN_START, criticalCss, COLOR_END);
     return criticalCss
   } catch (err) {
@@ -65,7 +70,7 @@ Metalsmith(__dirname)
   .env("DEBUG", process.env.DEBUG)
   .metadata({
     version,
-    basePath: process.env.BASE_PATH,
+    basePath,
     faviconHash: "QEMO20KRr9",
     styleHash: "20231212",
     scriptHash: "20231212",
