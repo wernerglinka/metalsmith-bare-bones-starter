@@ -56,6 +56,7 @@ const loadCriticalCss = () => {
   }
 }
 
+console.log('metalsmith production:', isProduction)
 Metalsmith(__dirname)
   .source("./src/content")
   .destination("./dist")

@@ -22,12 +22,11 @@ const gulpStylelint = require('@ronilaukkarinen/gulp-stylelint'); // https://git
 const postcss = require("gulp-postcss");
 const cssnano = require("cssnano");
 const noop = require("gulp-noop");
-const { criticalCssPath, browserSyncPort } = require('./config')
+const { criticalCssPath, browserSyncPort, srcDir, srcAssetsRootDir, srcAssetsDir } = require('./config')
 const browserSync = require('browser-sync').create();
 
-const srcDir = './src/',
-  svgOriginalFiles = srcDir + 'svg-original/**/*',
-  outputDir = srcDir + 'assets';
+const svgOriginalFiles = srcDir + 'svg-original/**/*',
+  outputDir = srcAssetsDir;
 
 const paths = {
   styles: {
@@ -58,7 +57,6 @@ const paths = {
 /** JS **/
 
 const scripts = () => {
-  console.log('production:', production)
   return (
 
     browserify({
@@ -69,7 +67,7 @@ const scripts = () => {
       })]
     })
       .bundle()
-      .pipe(source("s.js"))
+      .pipe(source("main.js"))
       .pipe(buffer())
       .pipe(!production ? sourcemaps.init({loadMaps: true}) : noop())
       .pipe(production ? uglify() : noop())
@@ -96,7 +94,7 @@ const css = () => {
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss(postCssPlugins))
     .pipe(!production ? sourcemaps.write('.') : noop())
-    .pipe(gulp.dest(outputDir));
+    .pipe(gulp.dest(srcAssetsDir));
 }
 
 exports.css = css;
@@ -212,6 +210,7 @@ const build = gulp.series(
 exports.build = build;
 
 const buildProd = gulp.series(
+  (done) => {console.log('gulp production:', production); done();},
   removeCriticalCss,
   build,
   serve,

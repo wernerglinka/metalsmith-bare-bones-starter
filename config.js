@@ -1,9 +1,14 @@
+const srcDir = __dirname + '/src/';
 const distDir = __dirname + '/dist/';
-const srcAssetsDir = __dirname + '/src/assets/';
-const srcLayoutsDir = __dirname + '/src/layouts/';
+const srcAssetsDir = srcDir + 'assets/';
+const srcAssetsRootDir = srcDir + 'assets-root/';
+const srcLayoutsDir = srcDir + 'layouts/';
 const cssFile = srcAssetsDir + 'style.css';
 
+exports.srcDir = srcDir;
 exports.distDir = distDir;
+exports.srcAssetsDir = srcAssetsDir;
+exports.srcAssetsRootDir = srcAssetsRootDir;
 exports.cssFile = cssFile;
 exports.criticalCssPath = srcLayoutsDir + 'critical.css';
 
