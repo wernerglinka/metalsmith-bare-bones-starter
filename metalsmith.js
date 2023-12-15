@@ -10,7 +10,8 @@ const when = require("metalsmith-if")
 const htmlMinifier = require("metalsmith-html-minifier")
 const assets = require("metalsmith-static-files")
 const { version } = require("./package.json")
-const { criticalCssPath } = require('./config')
+const { cssFilePath, criticalCssPath, jsFilePath } = require("./config")
+const fs = require("fs");
 
 const isProduction = process.env.NODE_ENV === "production"
 const basePath = process.env.BASE_PATH || ""
@@ -23,6 +24,17 @@ const condenseTitle = (string) => string.toLowerCase().replace(/\s+/g, "")
 const UTCdate = (date) => date.toUTCString("M d, yyyy")
 const blogDate = (date) => date.toLocaleString("en-US", { year: "numeric", month: "long", day: "numeric" })
 const trimSlashes = (string) => string.replace(/(^\/)|(\/$)/g, "")
+const formatBytes = (bytes) => {
+  if (bytes < 1024) {
+    return bytes + ' Bytes';
+  } else if (bytes < 1048576) {
+    return (bytes / 1024).toFixed(2) + ' KB';
+  } else if (bytes < 1073741824) {
+    return (bytes / 1048576).toFixed(2) + ' MB';
+  } else {
+    return (bytes / 1073741824).toFixed(2) + ' GB';
+  }
+}
 
 // Define engine options for the inplace and layouts plugins
 const templateConfig = {
@@ -35,33 +47,38 @@ const templateConfig = {
       condenseTitle,
       UTCdate,
       blogDate,
-      trimSlashes
+      trimSlashes,
+      formatBytes
     }
   }
+}
+
+const getFilesize = (filePath) => {
+  const stats = fs.statSync(filePath);
+  return stats.size;
 }
 
 const loadCriticalCss = () => {
-  const fs = require('fs');
   try {
-    let criticalCss = fs.readFileSync(criticalCssPath, 'utf8');
+    let criticalCss = fs.readFileSync(criticalCssPath, "utf8")
 
     if (basePath) {
-      const replacePath = "/assets/fonts";
+      const replacePath = "/assets/fonts"
       criticalCss = criticalCss.replaceAll(replacePath, basePath + replacePath)
     }
 
-    console.log("criticalCss content",  CYAN_START, criticalCss, COLOR_END);
+    console.log("criticalCss content", CYAN_START, criticalCss, COLOR_END)
     return criticalCss
   } catch (err) {
-    if (err.code === 'ENOENT') {
-      console.warn("criticalCss content",  CYAN_START, criticalCssPath, 'not found but may be on purpose', COLOR_END);
-      return;
+    if (err.code === "ENOENT") {
+      console.warn("criticalCss", CYAN_START, criticalCssPath, "not found but may be on purpose", COLOR_END)
+      return
     }
-    console.error("criticalCss content",  CYAN_START, err.message, COLOR_END);
+    console.error("criticalCss", CYAN_START, err.message, COLOR_END)
   }
 }
 
-console.log('metalsmith production:', isProduction)
+console.log("metalsmith production:", isProduction)
 Metalsmith(__dirname)
   .source("./src/content")
   .destination("./dist")
@@ -74,7 +91,9 @@ Metalsmith(__dirname)
     faviconHash: "QEMO20KRr9",
     styleHash: "20231212",
     scriptHash: "20231212",
-    criticalCss: loadCriticalCss()
+    criticalCss: loadCriticalCss(),
+    cssFilesize: getFilesize(cssFilePath),
+    jsFilesize: getFilesize(jsFilePath),
   })
   .use(drafts(!isProduction))
   .use(
