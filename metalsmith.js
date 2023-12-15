@@ -14,8 +14,8 @@ const { criticalCssPath } = require('./config')
 
 const isProduction = process.env.NODE_ENV === "production"
 const basePath = process.env.BASE_PATH || ""
-const CYAN_START = '\x1b[36m';
-const COLOR_END = '\x1b[0m';
+const CYAN_START = "\x1b[36m"
+const COLOR_END = "\x1b[0m"
 
 // functions to extend Nunjucks environment
 const spaceToDash = (string) => string.replace(/\s+/g, "-")

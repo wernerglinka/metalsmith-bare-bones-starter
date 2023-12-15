@@ -1,13 +1,13 @@
 module.exports = {
   plugins: {
-    'postcss-cssnext': {
+    "postcss-cssnext": {
       warnForDuplicates: true
     },
-    'postcss-pxtorem': {
-      propList: ['*'],
+    "postcss-pxtorem": {
+      propList: ["*"],
       minPixelValue: 5
     },
-    'cssnano': {
+    cssnano: {
       discardComments: {
         removeAll: true
       }
