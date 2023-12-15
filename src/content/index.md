@@ -1,5 +1,5 @@
 ---
-layout: simple.njk
+layout: home-page.njk
 bodyClass: "home"
 title: André J. Kelling
 

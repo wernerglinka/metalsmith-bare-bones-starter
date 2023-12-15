@@ -14,8 +14,14 @@ const Current = (() => {
     })
   }
 
-  const isHome = () => {
-    if (location.pathname === "/") {
+  /**
+   * Toggles the home CSS class on the home class selector based on the value of isHome.
+   *
+   * @param {boolean} isHome
+   * @returns {void}
+   */
+  const toggleHomeCss = (isHome) => {
+    if (isHome) {
       HOME_CLASS_SELECTOR.classList.add(HOME_CLASS)
     } else {
       HOME_CLASS_SELECTOR.classList.remove(HOME_CLASS)
@@ -24,7 +30,7 @@ const Current = (() => {
 
   return {
     menu,
-    isHome
+    toggleHomeCss
   }
 })()
 

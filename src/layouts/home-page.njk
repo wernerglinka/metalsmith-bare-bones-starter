@@ -1,0 +1,9 @@
+{% extends "layout.njk" %}
+
+{% block body %}
+  <div class="container js-home">
+    {{ contents | safe }}
+  </div>
+
+  {% include "partials/filesizes.njk" %}
+{% endblock %}

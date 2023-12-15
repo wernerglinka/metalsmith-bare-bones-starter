@@ -106,7 +106,7 @@ const Fetcher = (() => {
     }
     Current.menu(newCurrentMainNavID, "data-main-id")
 
-    Current.isHome()
+    Current.toggleHomeCss(newMain.includes("js-home"))
 
     siteMain.innerHTML = ""
     siteMain.insertAdjacentHTML("afterbegin", newMain)
