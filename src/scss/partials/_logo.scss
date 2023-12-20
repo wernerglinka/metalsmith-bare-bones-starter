@@ -35,7 +35,7 @@ $stroke-step: 7%;
 
 	.mouse-device .logo:hover &__item {
 		stroke-dasharray: $stroke-step $stroke-step * ($max - 1);
-		stroke-width: 28px;
+		stroke-width: 2px;
 		animation: stroke-offset 9s infinite linear 1s;
 		transition: fill 2s;
 
