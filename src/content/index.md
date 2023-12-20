@@ -1,6 +1,6 @@
 ---
 layout: home-page.njk
-bodyClass: "home"
+bodyClass: "homepage"
 title: André J. Kelling
 
 seo:
