@@ -1,8 +1,8 @@
-<nav class="mainnav" data-mainnav>
+<nav class="mainnav js-mainnav">
   <ul>
     {% for menuItem in nav.menu %}
-      <li class="item-{{ loop.index }} current" data-main-id="{{ menuItem.url | trimSlashes }}" data-main-current="jo">
-        <a href="{{ basePath }}{{ menuItem.url}}">{{ menuItem.label }}</a>
+      <li class="item-{{ loop.index }}">
+        <a href="{{ basePath }}{{ menuItem.url }}">{{ menuItem.label }}</a>
       </li>
     {% endfor %}
   </ul>

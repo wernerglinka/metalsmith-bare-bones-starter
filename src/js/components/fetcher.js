@@ -84,7 +84,7 @@ const Fetcher = (() => {
         history.pushState(null, null, url)
 
         // @todo: error when getContent results in catch here! even if not offline issue
-        _getContent(data)
+        _getContent(data, url)
       })
       .catch((error) => {
         const offlineUrl = `${siteUrl}/offline/`
@@ -94,17 +94,13 @@ const Fetcher = (() => {
       })
   }
 
-  const _getContent = (html) => {
+  const _getContent = (html, url) => {
     const parser = new DOMParser()
     const content = parser.parseFromString(html, "text/html")
     const newMain = content.querySelector("#main").innerHTML
     const newTitle = content.querySelector("title").innerHTML
-    let newCurrentMainNavID = content.querySelector("[data-main-current]")
 
-    if (newCurrentMainNavID !== null) {
-      newCurrentMainNavID = newCurrentMainNavID.getAttribute("data-main-current")
-    }
-    Current.menu(newCurrentMainNavID, "data-main-id")
+    Current.menu()
 
     Current.toggleHomeCss(newMain.includes("js-home"))
 
@@ -119,5 +115,4 @@ const Fetcher = (() => {
     init
   }
 })()
-
 Fetcher.init()

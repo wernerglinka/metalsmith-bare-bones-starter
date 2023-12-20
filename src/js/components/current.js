@@ -1,14 +1,22 @@
 const Current = (() => {
   const CURRENT_CLASS = "current"
-  const HOME_CLASS_SELECTOR = document.querySelector("body")
+  const HOME_CLASS_SELECTOR = document.body
   const HOME_CLASS = "homepage"
+  const mainMenuSel = document.querySelector(".js-mainnav")
 
-  const menu = (currentId, getId) => {
-    document.querySelectorAll(`[${getId}]`).forEach((el) => {
-      // console.log(el);
+  /**
+   * compares fetched url with url in menu and sets nav item current
+   * before removes current state from all nav items
+   */
+  const menu = () => {
+    const url = window.location.href;
+
+    mainMenuSel.querySelectorAll("li").forEach((el) => {
+      const link = el.querySelector("a");
+
       el.classList.remove(CURRENT_CLASS)
-      el.querySelector("a").blur()
-      if (el.getAttribute(getId) === currentId) {
+      link.blur()
+      if (link.href === url) {
         el.classList.add(CURRENT_CLASS)
       }
     })
@@ -33,5 +41,5 @@ const Current = (() => {
     toggleHomeCss
   }
 })()
-
+Current.menu()
 module.exports = Current

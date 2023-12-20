@@ -42,7 +42,5 @@ const Slider = (() => {
     init
   }
 })()
-
 Slider.init()
-
 module.exports = Slider

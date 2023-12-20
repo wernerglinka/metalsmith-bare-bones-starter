@@ -7,7 +7,7 @@
     },
     {
       "label": "Other Page",
-      "url": "/other-page",
+      "url": "/other-page/",
       "bodyClass": "otherPage"
     }
   ]
