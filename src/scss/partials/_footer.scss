@@ -6,6 +6,7 @@ footer {
 	width: 100%;
 	min-width: 320px;
 	padding: 8px 0 4px;
+	text-align: left;
 	background: rgba($c-grey, .8);
 	position: relative;
 	bottom: 0;
@@ -37,14 +38,6 @@ footer {
 	}
 }
 
-// current footer style
-
-footer {
-  background: #444;
-  padding: 20px;
-  color: #fff;
-  margin-top: auto;
-}
 .credits {
   font-style: italic;
   font-weight: bold;
