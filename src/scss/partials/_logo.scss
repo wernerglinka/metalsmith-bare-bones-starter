@@ -1,19 +1,22 @@
+@use 'sass:list';
+
 .logo {
 	position: relative;
 	display: block;
 	margin: 0 auto;
 	width: 111px;
-	z-index: 9; // higher than main menu
+	z-index: 9;
 
+	// higher than main menu
 	svg {
 		width: 100%;
 	}
 }
 
-$animationDelayLogo: 3s;
+$animation-delay-logo: 3s;
 
-.mouseDevice .logo {
-	transition: transform 11s $animationDelayLogo;
+.mouse-device .logo {
+	transition: transform 11s $animation-delay-logo;
 
 	&:hover {
 		transform: scale3d(2, 2, 2) translateY(25%);
@@ -21,24 +24,24 @@ $animationDelayLogo: 3s;
 }
 
 $colors: $c-lightorange, $c-lightpurple, $c-gold;
-$fillColors: $c-lightpurple, $c-gold, $c-lightorange;
+$fill-colors: $c-lightpurple, $c-gold, $c-lightorange;
 $max: 3;
 $stroke-step: 7%;
 
-.letter__bg {
-	.mouseDevice &__item {
-		shape-rendering: geometricPrecision;
+.letter-bg {
+	.mouse-device &__item {
+		shape-rendering: geometricprecision;
 	}
 
-	.mouseDevice .logo:hover &__item {
+	.mouse-device .logo:hover &__item {
 		stroke-dasharray: $stroke-step $stroke-step * ($max - 1);
 		stroke-width: 28px;
 		animation: stroke-offset 9s infinite linear 1s;
 		transition: fill 2s;
 
 		@for $item from 1 through $max {
-			$stroke-color: nth($colors, $item);
-			$fill-color: nth($colors, $item);
+			$stroke-color: list.nth($colors, $item);
+			$fill-color: list.nth($colors, $item);
 			&:nth-child(#{$item}) {
 				stroke: $stroke-color;
 				stroke-dashoffset: $stroke-step * $item;
@@ -46,28 +49,33 @@ $stroke-step: 7%;
 			}
 		}
 
-		&.letter__bg__inner {
-			animation: stroke-offset 9s infinite linear 1s, heartbeatColor 2s infinite $animationDelayLogo;
+		&.letter-bg__inner {
+			animation: stroke-offset 9s infinite linear 1s, heartbeat-color 2s infinite $animation-delay-logo;
 		}
 	}
 }
 
-@keyframes heartbeatColor {
+@keyframes heartbeat-color {
 	0% {
 		fill: $c-gold;
 	}
+
 	20% {
 		fill: $c-lightorange;
 	}
+
 	40% {
 		fill: $c-gold;
 	}
+
 	60% {
 		fill: $c-lightorange;
 	}
+
 	80% {
 		fill: $c-gold;
 	}
+
 	100% {
 		fill: $c-gold;
 	}
@@ -76,6 +84,6 @@ $stroke-step: 7%;
 @keyframes stroke-offset {
 	50% {
 		stroke-dashoffset: $stroke-step * $max;
-		stroke-dasharray: 0 $stroke-step * $max*2.5;
+		stroke-dasharray: 0 $stroke-step * $max * 2.5;
 	}
 }

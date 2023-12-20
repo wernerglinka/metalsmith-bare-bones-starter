@@ -1,11 +1,12 @@
+@use 'sass:color';
+
 /* Base
-<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>*/
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> */
 
 body {
 	/* images/brillant.png */
-	background: $c-whiteBG url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAAAAABzQ+pjAAAAFElEQVQIHWP48/0/029WBsb/DAwAJ4kE9Tid5T0AAAAASUVORK5CYII=') repeat;
-	overflow-x: hidden;
-	overflow-y: scroll;
+	background: $c-white-bg url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAAAAABzQ+pjAAAAFElEQVQIHWP48/0/029WBsb/DAwAJ4kE9Tid5T0AAAAASUVORK5CYII=') repeat;
+	overflow: hidden scroll;
 	font-family: $f-main;
 	font-size: 16px;
 	line-height: 24px;
@@ -36,6 +37,7 @@ a {
 		&.linkedin i {
 			color: #0061A2;
 		}
+
 		&.xing i {
 			color: #126567;
 		}
@@ -53,7 +55,7 @@ a {
 		}
 
 		&.instagram i {
-			color: #FFFFFF;
+			color: #FFF;
 		}
 	}
 }
@@ -71,7 +73,7 @@ h6 {
 
 h1 {
 	font-size: 20px;
-	color: darken($c-darkgreen, 20);
+	color: color.adjust($c-darkgreen, $lightness: -20%);
 	letter-spacing: .02em;
 	text-transform: uppercase;
 	margin: 0 0 .3em;
@@ -105,16 +107,16 @@ blockquote {
 	padding: 1em 40px;
 	line-height: 1.45;
 	position: relative;
-	color: darken($c-middlegrey, 10);
+	color: color.adjust($c-middlegrey, $lightness: -10%);
 
-	&:before {
+	&::before {
 		content: "\201C";
 		font-size: 80px;
 		position: absolute;
 		top: -.5em;
 		left: 50%;
 		margin-left: -27px;
-		color: lighten($c-middlegrey, 20);
+		color: color.adjust($c-middlegrey, $lightness: 20%);
 	}
 }
 
@@ -127,7 +129,7 @@ svg {
 img {
 	position: relative;
 
-	&:before {
+	&::before {
 		content: "🥺 Broken Image of " attr(alt);
 		display: block;
 		position: absolute;
@@ -140,7 +142,7 @@ img {
 		z-index: 2;
 	}
 
-	&:after {
+	&::after {
 		content: "";
 		display: block;
 		min-height: 60px;

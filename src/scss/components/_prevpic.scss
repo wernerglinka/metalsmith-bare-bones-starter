@@ -1,5 +1,6 @@
 .prevpic {
-	@include imageShadow();
+	@include image-shadow;
+
 	max-width: 170px;
 
 	&__summary {
@@ -18,7 +19,7 @@
 		z-index: 11;
 		transition: all .2s;
 
-		.mouseDevice & {
+		.mouse-device & {
 			display: inline-block;
 		}
 	}
@@ -30,6 +31,7 @@
 
 	.overview__link.active & &__summary {
 		opacity: 0;
+
 		// sync time with js and overview__link
 		animation: kf-summary .5s  ease-in;
 	}

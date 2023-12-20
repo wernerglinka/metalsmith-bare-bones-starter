@@ -1,8 +1,9 @@
 /* Footer
-<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>*/
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> */
 
 footer {
 	@include clear;
+
 	width: 100%;
 	min-width: 320px;
 	padding: 8px 0 4px;
@@ -27,13 +28,9 @@ footer {
 		i {
 			color: $c-green;
 		}
-
-		&.h {
-			margin-right: 20px;
-		}
 	}
 
-	@media (min-height: 606px) {
+	@media (height >= 606px) {
 		position: fixed;
 	}
 }

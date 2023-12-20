@@ -1,10 +1,11 @@
-/*==================================================
+/* ==================================================
 stylesheet
 (for andrekelling.de)
 (c) 2018 by Andre Kelling
-==================================================*/
+================================================== */
+
 /* Breakpoints
-<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>*/
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> */
 $brk-xs: 330px;
 $brk-s: 375px;
 $brk-m: 443px;
@@ -20,26 +21,21 @@ $brk-xl: 766px;
 @import 'tools';
 @import 'components/spinner';
 @import 'components/prevpic';
-
 @import 'layout';
-
 @import 'svg';
 @import 'partials/logo';
 @import 'partials/header';
-
 @import 'partials/nav';
-
 @import 'content/index';
 @import 'content/overview';
 @import 'content/sliderio'; // named this because weird not syntax highlighting of phpstorm
 @import 'content/basic-page';
 @import 'content/about';
-
 @import 'partials/footer';
 
 /* Print
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> */
-//use of !important because of critical inline CSS
+// use of !important because of critical inline CSS
 
 @media print {
 	body {

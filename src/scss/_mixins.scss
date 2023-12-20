@@ -5,12 +5,13 @@
 }
 
 @mixin clear {
-  &:after {
+  &::after {
     content: "";
     display: table;
     clear: both;
   }
 }
+
 @mixin overlay {
   position: absolute;
   top: 0;
@@ -20,11 +21,11 @@
   z-index: 1;
 }
 
-@mixin imageShadow($size: 8px) {
+@mixin image-shadow($size: 8px) {
   position: relative;
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     z-index: -1;
     position: absolute;
     content: "";
@@ -38,7 +39,7 @@
     transform: rotate(-3deg);
   }
 
-  &:after {
+  &::after {
     transform: rotate(3deg);
     right: $size;
     left: auto;

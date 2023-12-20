@@ -1,27 +1,14 @@
 /* Header
-<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>*/
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> */
 header {
-    position: relative;
-    z-index: 1;
-    margin: 0 auto;
-    padding: 12px 0 18px;
-    overflow: visible;
-    //overflow-x: hidden;
-    transition: padding 300ms ease-in-out;
+	position: relative;
+	z-index: 1;
+	margin: 0 auto;
+	padding: 12px 0 18px;
+	overflow: visible;
+	transition: padding 300ms ease-in-out;
 
-    //figure {
-    //	position: absolute;
-    //	margin: 0;
-    //	top: 0;
-    //	width: 100%;
-    //	text-align: center;
-    //
-    //    @media (min-width: 850px), screen and (min-height: 606px) {
-    //        top:-69px;
-    //    }
-    //}
-
-    @media (min-height: 606px) {
-        padding-bottom: 26px;
-    }
+	@media (height >= 606px) {
+		padding-bottom: 26px;
+	}
 }

@@ -15,10 +15,9 @@ const babelify = require("babelify")
 const source = require("vinyl-source-stream")
 const buffer = require("vinyl-buffer")
 const uglify = require("gulp-uglify")
-const sass = require("gulp-sass")(require("node-sass"))
+const sass = require("gulp-sass")(require("sass"))
 const sourcemaps = require("gulp-sourcemaps")
 const autoprefixer = require("autoprefixer")
-const gulpStylelint = require("@ronilaukkarinen/gulp-stylelint") // https://github.com/olegskl/gulp-stylelint/issues/132#issuecomment-957267876
 const postcss = require("gulp-postcss")
 const cssnano = require("cssnano")
 const noop = require("gulp-noop")
@@ -92,13 +91,13 @@ const css = () =>
 
 exports.css = css
 
-const stylelint = () =>
-  gulp.src(paths.styles.watchSrc).pipe(
-    gulpStylelint({
-      failAfterError: false,
-      reporters: [{ formatter: "string", console: true }]
-    })
-  )
+const stylelint = (done) => {
+  exec(`stylelint ${paths.styles.watchSrc}`, (err, stdout, stderr) => {
+    console.log(stdout)
+    console.log(stderr)
+    done(err)
+  })
+}
 
 exports.stylelint = stylelint
 
