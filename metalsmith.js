@@ -10,7 +10,7 @@ const when = require("metalsmith-if")
 const htmlMinifier = require("metalsmith-html-minifier")
 const assets = require("metalsmith-static-files")
 const { version } = require("./package.json")
-const { cssFilePath, criticalCssPath, jsFilePath } = require("./config")
+const { cssFilePath, criticalCssPath, jsFilePath, svgSymbolsPath } = require("./config")
 const fs = require("fs");
 
 const isProduction = process.env.NODE_ENV === "production"
@@ -78,6 +78,17 @@ const loadCriticalCss = () => {
   }
 }
 
+const loadSvgSymbols = () => {
+  try {
+    const svgSymbols = fs.readFileSync(svgSymbolsPath, "utf8")
+
+    console.log("svgSymbols content", CYAN_START, svgSymbols, COLOR_END)
+    return svgSymbols
+  } catch (err) {
+    console.error("svgSymbols", CYAN_START, err.message, COLOR_END)
+  }
+}
+
 console.log("metalsmith production:", isProduction)
 Metalsmith(__dirname)
   .source("./src/content")
@@ -92,6 +103,7 @@ Metalsmith(__dirname)
     faviconHash: "QEMO20KRr9",
     styleHash: "20231220",
     scriptHash: "20231220",
+    svgSymbols: loadSvgSymbols(),
     criticalCss: loadCriticalCss(),
     cssFilesize: getFilesize(cssFilePath),
     jsFilesize: getFilesize(jsFilePath),

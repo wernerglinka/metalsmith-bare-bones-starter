@@ -12,6 +12,8 @@ exports.srcAssetsDir = srcAssetsDir
 exports.srcAssetsRootDir = srcAssetsRootDir
 exports.cssFilePath = cssFilePath
 exports.jsFilePath = jsFilePath
+exports.srcLayoutsDir = srcLayoutsDir
+exports.svgSymbolsPath = `${srcLayoutsDir}svg-symbols.svg`
 exports.criticalCssPath = `${srcLayoutsDir}critical.css`
 
 exports.browserSyncPort = 3030 // 3030 to not disturb may open 3000 port

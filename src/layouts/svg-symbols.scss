@@ -1,0 +1,23 @@
+
+$icon-icon-clock-o-width: 27px;
+$icon-icon-clock-o-height: 32px;
+$icon-icon-file-o-width: 27px;
+$icon-icon-file-o-height: 32px;
+$icon-icon-wrench-width: 30px;
+$icon-icon-wrench-height: 32px;
+
+.icon-clock-o {
+  width: $icon-icon-clock-o-width;
+  height: $icon-icon-clock-o-height;
+}
+
+.icon-file-o {
+  width: $icon-icon-file-o-width;
+  height: $icon-icon-file-o-height;
+}
+
+.icon-wrench {
+  width: $icon-icon-wrench-width;
+  height: $icon-icon-wrench-height;
+}
+

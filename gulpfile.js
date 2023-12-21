@@ -22,7 +22,7 @@ const postcss = require("gulp-postcss")
 const cssnano = require("cssnano")
 const noop = require("gulp-noop")
 const browserSync = require("browser-sync").create()
-const { criticalCssPath, browserSyncPort, srcDir, srcAssetsRootDir, srcAssetsDir } = require("./config")
+const { srcLayoutsDir, criticalCssPath, browserSyncPort, srcDir, srcAssetsRootDir, srcAssetsDir } = require("./config")
 
 const svgOriginalFiles = `${srcDir}svg-original/**/*`
 const outputDir = srcAssetsDir
@@ -80,6 +80,7 @@ const postCssPlugins = [
   production ? cssnano() : false
 ].filter(Boolean)
 
+// CSS needs to go after svg icons, so it can use the svg icons scss
 const css = () =>
   gulp
     .src(paths.styles.src)
@@ -128,18 +129,23 @@ exports.images = images
 
 /** svg symbols * */
 
+// SVG icons needs to go before CSS, so it can use the svg icons scss
 const svgsymbols = () =>
   gulp
     .src(svgOriginalFiles)
     .pipe(svgmin())
     .pipe(
       svgSymbols({
-        templates: ["default-svg", "default-demo"],
-        id: "svg-icon-%f",
-        title: "svg-icon-%f"
+        svgAttrs: {
+          class: "svg-icon-lib"
+        },
+        templates: ["default-svg", "default-scss"],
+        id: "icon-%f",
+        class: ".icon-%f",
+        title: "Icon %f"
       })
     )
-    .pipe(gulp.dest(outputDir))
+    .pipe(gulp.dest(srcLayoutsDir))
 
 exports.svgsymbols = svgsymbols
 
@@ -200,7 +206,7 @@ const serveStop = (done) => {
 
 /** build * */
 
-const build = gulp.series(gulp.parallel(scripts, css, images, svgsymbols), buildMetalsmith)
+const build = gulp.series(gulp.parallel(scripts, images, svgsymbols), css, buildMetalsmith)
 exports.build = build
 
 const buildProd = gulp.series(
