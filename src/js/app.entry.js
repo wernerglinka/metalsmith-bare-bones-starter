@@ -9,8 +9,7 @@ window.addEventListener(
   },
   false
 )
-
-require("./components/current.js");
-require("./components/fetcher.js")
 require("./components/slider.js")
-require("./components/browsertab.js")
+require("./modules/current.js");
+require("./modules/fetcher.js")
+require("./modules/browsertab.js")

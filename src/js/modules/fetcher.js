@@ -1,5 +1,4 @@
 const Fetcher = (() => {
-  const Slider = require("./slider.js")
   const Current = require("./current.js")
 
   const siteUrl = `${window.location.protocol}//${top.location.host.toString()}`
@@ -58,8 +57,6 @@ const Fetcher = (() => {
 
   const _reinitMain = (main) => {
     _addInternalLinksListener(main)
-
-    Slider.init()
 
     siteMain.classList.remove(transitionClass)
   }

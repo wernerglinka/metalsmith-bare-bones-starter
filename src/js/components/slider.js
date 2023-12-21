@@ -1,46 +1,55 @@
-const Slider = (() => {
-  const backgroundColours = ["#A0B882", "#b648f1", "#E8AD00", "#1D1D1B"]
-  const attrDataImageClicked = "data-image-clicked"
-  // @todo: add settings with all the selectors and refactor them
+class Slider extends HTMLElement {
+  static observedAttributes = ["color", "size"];
 
-  const init = () => {
-    document.querySelectorAll("[data-slider]").forEach((el) => {
-      _thumbnailNav(el)
-    })
+  constructor() {
+    super();
+    this.backgroundColours = ["#A0B882", "#B648F1", "#E8AD00", "#1D1D1B"]
+    this.attrDataImageClicked = "data-image-clicked"
   }
 
-  const _thumbnailNav = (el) => {
-    const items = el.querySelectorAll("[data-image]")
+  connectedCallback() {
+    console.log("Custom element added to page.");
+    this.thumbnailNav();
+  }
 
-    items.forEach((el) => {
+  disconnectedCallback() {
+    console.log("Custom element removed from page.");
+  }
+
+  adoptedCallback() {
+    console.log("Custom element moved to new page.");
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    console.log(`Attribute ${name} has changed.`);
+  }
+
+  thumbnailNav() {
+    this.querySelectorAll("nav > span").forEach((el) => {
       el.addEventListener("click", () => {
-        _switchImage(el)
+        this.switchImage(el)
       })
     })
   }
 
-  const _switchImage = (el) => {
+  switchImage(el) {
     const img = el.getAttribute("data-image")
-    const imgDesc = el.getAttribute("data-image-description")
-    let imgClick = el.getAttribute(attrDataImageClicked)
+    const imgDesc = el.getAttribute("data-image-title")
+    let imgClick = el.getAttribute(this.attrDataImageClicked)
 
-    if (!imgClick || imgClick === backgroundColours.length) {
+    if (!imgClick || imgClick === this.backgroundColours.length) {
       imgClick = 0
     }
 
     imgClick++
-    el.setAttribute(attrDataImageClicked, imgClick)
-    el.style.backgroundColor = backgroundColours[imgClick - 1]
+    el.setAttribute(this.attrDataImageClicked, imgClick)
+    el.style.backgroundColor = this.backgroundColours[imgClick - 1]
 
     el.classList.add("active")
 
-    document.getElementById("image").src = img
-    document.getElementById("imageDescription").innerHTML = imgDesc
+    this.querySelector("img").src = img
+    this.querySelector("h3").innerHTML = imgDesc
   }
+}
 
-  return {
-    init
-  }
-})()
-Slider.init()
-module.exports = Slider
+customElements.define("ak-slider", Slider)

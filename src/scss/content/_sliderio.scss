@@ -1,53 +1,57 @@
-.slider {
-    &__desc {
-		margin: 10px 0;
-    }
+ak-slider {
+	display: block;
+	margin-bottom: 20px;
+
+	> img {
+		margin-bottom: 20px;
+	}
 }
 
 .slider--pager {
-    width: 100%;
+	display: flex;
+
 }
 
 .slider--pager > span {
-    display: inline-block;
-    width: 25%;
-    border-right: 1px dotted $c-lightblack;
-    box-sizing: border-box;
-    background: transparent;
-    transition: all 200ms ease-in;
+	flex-basis: 25%;
+	border-right: 1px dotted $c-lightblack;
+	box-sizing: border-box;
+	background: transparent;
+	transition: all 200ms ease-in;
+	cursor: pointer;
 
-    &:hover,
-    &:focus {
-        background: $c-lightorange;
+	&:hover,
+	&:focus {
+		background: $c-lightorange;
 
-        img {
-            opacity: .5;
-        }
-    }
+		img {
+			opacity: .5;
+		}
+	}
 
-    &.active {
-        background: $c-lightgreen;
+	&.active {
+		background: $c-lightgreen;
 
-        img {
-            opacity: .5;
-        }
-    }
+		img {
+			opacity: .5;
+		}
+	}
 
-    &:last-of-type,
-    &:nth-of-type(4n) {
-        border-right-color: transparent;
-    }
+	&:last-of-type,
+	&:nth-of-type(4n) {
+		border-right-color: transparent;
+	}
 
-    @include breakpoint($brk-l) {
-        width: 12.5%;
+	@include breakpoint($brk-l) {
+		flex-basis: 12.5%;
 
-        &:nth-of-type(4n) {
-            border-right-color: $c-lightblack;
-        }
+		&:nth-of-type(4n) {
+			border-right-color: $c-lightblack;
+		}
 
-        &:last-of-type,
-        &:nth-of-type(8n) {
-            border-right-color: transparent;
-        }
-    }
+		&:last-of-type,
+		&:nth-of-type(8n) {
+			border-right-color: transparent;
+		}
+	}
 }
