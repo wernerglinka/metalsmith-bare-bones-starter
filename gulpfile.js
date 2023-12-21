@@ -44,7 +44,7 @@ const paths = {
     `${srcDir}assets/**/*`,
     `${srcDir}assets-root/**/*`,
     `${srcDir}content/**/*`,
-    `${srcDir}layout/**/*`,
+    `${srcDir}layouts/**/*`,
     `${srcDir}metadata/**/*`
   ]
 }
@@ -221,16 +221,16 @@ exports.buildProd = buildProd
 /** watch * */
 
 const watch = () => {
-  build
+  build()
 
   gulp.watch(paths.site, buildMetalsmith)
 
   // TODO just copy new build artifacts (styles, scripts, images) to dist. not whole metalsmith build
   gulp.watch(paths.styles.watchSrc, gulp.series(stylelint, css, buildMetalsmith))
 
-  gulp.watch(paths.scripts.src, scripts, buildMetalsmith)
+  gulp.watch(paths.scripts.src, gulp.series(scripts, buildMetalsmith))
 
-  gulp.watch(paths.images.src, images, buildMetalsmith)
+  gulp.watch(paths.images.src, gulp.series(images, buildMetalsmith))
 }
 
 exports.watch = watch
