@@ -1,3 +1,5 @@
+{% import "./macros/components.njk" as components %}
+
 {% extends "layout.njk" %}
 
 {% block body %}
@@ -24,16 +26,13 @@
     </ak-slider>
 
     <div class="details">
-      <p>{{ project.usedTechnic }}</p>
-      <p>{{ project.format | safe }}</p>
-      <p>{{ project.year }}</p>
+      {{ components.details("wrench", "Techs", project.usedTechnic) }}
+      {{ components.details("file-o", "Format", project.format | safe) }}
+      {{ components.details("clock-o", "Year", project.year) }}
     </div>
-
-
 
     <div class="text">
       {{ contents | safe }}
     </div>
-
   </div>
 {% endblock %}

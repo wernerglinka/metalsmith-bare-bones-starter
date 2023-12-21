@@ -1,0 +1,15 @@
+{# some good documentation about macros https://darthmall.net/weblog/2021/includes-and-macros/ #}
+
+{% macro details(icon, title, text) %}
+<div class="details__item">
+  <div class="details__header">
+    <svg role="img" class="details__icon icon-{{ icon }}">
+      <use xlink:href="#icon-{{ icon }}"></use>
+    </svg>
+    <span class="details__title">{{ title }}</span>
+  </div>
+  <p class="details__text">
+    {{ text }}
+  </p>
+</div>
+{% endmacro %}

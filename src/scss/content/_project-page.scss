@@ -2,14 +2,34 @@
 	float: left;
 	width: 100%;
 
-	h4 {
+	&__item {
 		margin: 0;
+	}
 
-		i {
-			color: $c-middlegrey;
-			margin-right: 6px;
-			cursor: help;
+	&__header {
+		display: grid;
+		grid-template-columns: 30px 1fr;
+		align-items: flex-end;
+	}
+
+	&__icon {
+		fill: $c-middlegrey;
+		width: 21px;
+		margin-right: 6px;
+
+		&.icon-format-o {
+			width: 19px;
 		}
+	}
+
+	&__title {
+		display: block;
+		margin-bottom: -2px;
+		color: $c-orange;
+	}
+
+	&__text {
+		margin-left: 30px;
 	}
 
 	@include breakpoint($brk-xl) {
