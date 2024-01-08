@@ -111,11 +111,6 @@ Metalsmith(__dirname)
     cssFilesize: getFilesize(cssFilePath),
     jsFilesize: getFilesize(jsFilePath),
   })
-  .use(collections({
-    works: {
-      limit: Infinity
-    }
-  }))
   .use(drafts(!isProduction))
   .use(
     metadata({
@@ -129,6 +124,11 @@ Metalsmith(__dirname)
       relative: false
     })
   )
+  .use(collections({
+    works: {
+      refer: false // if true, an error occurs
+    }
+  }))
   .use(layouts(templateConfig))
   .use(
     assets({
