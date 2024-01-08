@@ -1,5 +1,6 @@
 ---
 layout: project-page.njk
+collection: works
 
 project:
   summary: Billing Tool

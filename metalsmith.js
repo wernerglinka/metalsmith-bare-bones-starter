@@ -9,6 +9,7 @@ const metadata = require("@metalsmith/metadata")
 const when = require("metalsmith-if")
 const htmlMinifier = require("metalsmith-html-minifier")
 const assets = require("metalsmith-static-files")
+const collections = require("@metalsmith/collections")
 const { version } = require("./package.json")
 const { cssFilePath, criticalCssPath, jsFilePath, svgSymbolsPath } = require("./config")
 const fs = require("fs");
@@ -23,7 +24,8 @@ const spaceToDash = (string) => string.replace(/\s+/g, "-")
 const condenseTitle = (string) => string.toLowerCase().replace(/\s+/g, "")
 const UTCdate = (date) => date.toUTCString("M d, yyyy")
 const blogDate = (date) => date.toLocaleString("en-US", { year: "numeric", month: "long", day: "numeric" })
-const trimSlashes = (string) => string.replace(/(^\/)|(\/$)/g, "")
+const trimSlashes = (string) => string.replace(/(^\/)|(\/$)/g, "\/")
+const pathMdLink = (string) => string.replace(/\.md/g, "")
 const formatBytes = (bytes) => {
   if (bytes < 1024) {
     return bytes + ' Bytes';
@@ -48,7 +50,8 @@ const templateConfig = {
       UTCdate,
       blogDate,
       trimSlashes,
-      formatBytes
+      formatBytes,
+      pathMdLink
     }
   }
 }
@@ -108,6 +111,11 @@ Metalsmith(__dirname)
     cssFilesize: getFilesize(cssFilePath),
     jsFilesize: getFilesize(jsFilePath),
   })
+  .use(collections({
+    works: {
+      limit: Infinity
+    }
+  }))
   .use(drafts(!isProduction))
   .use(
     metadata({
