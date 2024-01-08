@@ -9,12 +9,17 @@
 
     <ak-slider>
       <h3>{{ project.slides[0].title }}</h3>
-      <img src="{{ imagePath }}{{ project.slides[0].image }}" alt="{{ project.slides[0].title }}">
+      <img
+        src="{{ imagePath }}{{ project.slides[0].image }}"
+        srcset="{{ imagePath }}{{ project.slides[0].image2x }} 2x"
+        alt="{{ project.slides[0].title }}"
+      >
 
       <nav class="slider--pager">
         {% for slide in project.slides %}
           <span
             data-image="{{ imagePath }}{{ slide.image }}"
+            data-image2x="{{ imagePath }}{{ slide.image2x }}"
             data-image-title="{{ slide.title }}"
             title="Show {{ slide.title }}"
             role="button"

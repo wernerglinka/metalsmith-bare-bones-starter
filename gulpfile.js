@@ -6,6 +6,7 @@ const svgmin = require("gulp-svgmin")
 const svgSymbols = require("gulp-svg-symbols")
 const imageminJpegRecompress = require("imagemin-jpeg-recompress")
 const imageminPngquant = require("imagemin-pngquant")
+const responsiveImages = require('gulp-sharp-responsive')
 
 const production = process.env.NODE_ENV === "production"
 // const production = false;
@@ -38,7 +39,9 @@ const paths = {
   },
   images: {
     src: `${srcDir}images-original/**/*`,
-    dist: `${outputDir}/images`
+    srcContent: `${srcDir}images-original/content/**/*.{jpg,png}`,
+    dist: `${outputDir}/images`,
+    distContent: `${outputDir}/images/content`
   },
   site: [
     `${srcDir}assets/**/*`,
@@ -104,7 +107,7 @@ exports.stylelint = stylelint
 
 /** images * */
 
-const images = () =>
+const imagesAll = () =>
   gulp
     .src(paths.images.src)
     .pipe(
@@ -125,6 +128,30 @@ const images = () =>
     )
     .pipe(gulp.dest(paths.images.dist))
 
+const imagesContent = () =>
+  gulp
+    .src(paths.images.srcContent)
+    .pipe(
+      responsiveImages({
+        formats: [
+          { width: 444, rename: { suffix: "-sm" } },
+          { width: 888, rename: { suffix: "-lg" } },
+        ]
+      })
+    )
+    .pipe(
+      imagemin(
+        [
+          imageminPngquant()
+        ],
+        {
+          verbose: true
+        }
+      )
+    )
+    .pipe(gulp.dest(paths.images.distContent))
+
+const images = gulp.series(imagesAll, imagesContent)
 exports.images = images
 
 /** svg symbols * */

@@ -34,6 +34,7 @@ class Slider extends HTMLElement {
 
   switchImage(el) {
     const img = el.getAttribute("data-image")
+    const img2x = el.getAttribute("data-image2x")
     const imgDesc = el.getAttribute("data-image-title")
     let imgClick = el.getAttribute(this.attrDataImageClicked)
 
@@ -42,12 +43,13 @@ class Slider extends HTMLElement {
     }
 
     imgClick++
-    el.setAttribute(this.attrDataImageClicked, imgClick)
+    el.setAttribute(this.attrDataImageClicked, imgClick % this.backgroundColours.length)
     el.style.backgroundColor = this.backgroundColours[imgClick - 1]
 
     el.classList.add("active")
 
     this.querySelector("img").src = img
+    this.querySelector("img").srcset = `${img2x} 2x`
     this.querySelector("h3").innerHTML = imgDesc
   }
 }

@@ -3,13 +3,13 @@ layout: project-page.njk
 
 project:
   summary: Billing Tool
-  previewImage: "/content/invoicelly-preview.png"
+  previewImage: "previews/invoicelly-preview.png"
   usedTechnic: React, Redux, Jest, Firebase, jsPDF
   format: <a href="https://invoicelly.andrekelling.de/" target="_blank" title="go to App">Invoicelly App</a>
   year: 2018
   slides:
-    - { image: "/content/invoicelly-estimates.png", title: Login page }
-    - { image: "/content/invoicelly-login.png", title: UI example }
+    - { image: "content/invoicelly-estimates-sm.png", image2x: "content/invoicelly-estimates-lg.png", title: Login page }
+    - { image: "content/invoicelly-login-sm.png", image2x: "content/invoicelly-login-lg.png", title: UI example }
     
 seo:
   title: Invoicelly App
