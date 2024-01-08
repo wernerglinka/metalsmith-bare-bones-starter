@@ -13,3 +13,9 @@
   </p>
 </div>
 {% endmacro %}
+
+{% macro icon(icon) %}
+  <svg role="img" class="icon-{{ icon }}">
+    <use xlink:href="#icon-{{ icon }}"></use>
+  </svg>
+{% endmacro %}
