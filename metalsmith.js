@@ -102,7 +102,7 @@ Metalsmith(__dirname)
   .metadata({
     version,
     basePath,
-    imagePath: "/assets/images/",
+    imagePath: basePath + "/assets/images/",
     faviconHash: "QEMO20KRr9",
     styleHash: "20231220",
     scriptHash: "20231220",
