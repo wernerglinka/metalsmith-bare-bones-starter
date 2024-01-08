@@ -134,7 +134,7 @@ const imagesContent = () =>
     .pipe(
       responsiveImages({
         formats: [
-          { width: 444, rename: { suffix: "-sm" } },
+          { width: 444, rename: { suffix: "-md" } },
           { width: 888, rename: { suffix: "-lg" } },
         ]
       })
