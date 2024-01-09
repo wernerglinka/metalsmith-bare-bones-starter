@@ -99,9 +99,10 @@ const stylelint = (done) => {
 exports.stylelint = stylelint
 
 /** images * */
-
-const imagePipe = () => {
-  return imagemin(
+const imagesRoot = () => {
+  return gulp
+    .src(imageDirs.src)
+    .pipe(imagemin(
       [
         imageminJpegRecompress({
           loops: 4,
@@ -114,44 +115,34 @@ const imagePipe = () => {
       {
         verbose: true
       }
-    )
-}
-
-const imagesRoot = () => {
-  return gulp
-    .src(imageDirs.src)
-    .pipe(imagePipe())
+    ))
     .pipe(gulp.dest(imageDirs.dist))
 }
-const imagesPreview = () => {
-  return gulp
-    .src(imageDirs.srcPreviews)
-    .pipe(imagePipe())
-    .pipe(gulp.dest(imageDirs.distPreviews))
-}
-const contentImagesResize444 = (done) =>
+const imagesPreview = (done) =>
+  exec(`node image-resize.js ${imageDirs.srcPreviews} ${imageDirs.distPreviews} 170`, (err, stdout, stderr) => {
+    console.log(stdout)
+    console.log(stderr)
+    done(err)
+  })
+const imagesContentResize444 = (done) =>
   exec(`node image-resize.js ${imageDirs.srcContent} ${imageDirs.distContent} 444 -md`, (err, stdout, stderr) => {
-  console.log(stdout)
-  console.log(stderr)
-  done(err)
-})
-const contentImagesResize888 = (done) =>
+    console.log(stdout)
+    console.log(stderr)
+    done(err)
+  })
+const imagesContentResize888 = (done) =>
   exec(`node image-resize.js ${imageDirs.srcContent} ${imageDirs.distContent} 888 -lg`, (err, stdout, stderr) => {
-  console.log(stdout)
-  console.log(stderr)
-  done(err)
-})
-const imagesContent = (done) => {
-  return gulp.parallel(
-    contentImagesResize444,
-    contentImagesResize888
-  )(done)
-}
+    console.log(stdout)
+    console.log(stderr)
+    done(err)
+  })
 
+// parallel
 const images = gulp.series(
   imagesRoot,
   imagesPreview,
-  imagesContent
+  imagesContentResize444,
+  imagesContentResize888
 )
 exports.images = images
 
@@ -264,7 +255,7 @@ const watch = () => {
 
   gulp.watch(paths.scripts.src, gulp.series(scripts, buildMetalsmith))
 
-  gulp.watch(imageDirs.src, gulp.series(images, buildMetalsmith))
+  gulp.watch([imageDirs.src, imageDirs.srcPreviews, imageDirs.srcContent], gulp.series(images, buildMetalsmith))
 }
 
 exports.watch = watch

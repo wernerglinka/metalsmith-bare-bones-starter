@@ -8,7 +8,7 @@ createdAt: 2010-11-30 04:11:36
 
 project:
   summary: Static website
-  previewImage: "previews/berlinstudios.jpg"
+  previewImage: "previews/berlinstudios.webp"
   usedTechnic: Metalsmith, nodeJS, vanilla JS
   format: <a target="_blank" href="https://berlinstudios.org" title="berlinstudios.org">berlinstudios.org</a>
   year: since 2012

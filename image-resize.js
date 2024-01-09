@@ -3,11 +3,10 @@ const fs = require("fs");
 const path = require("path");
 const glob = require("glob");
 
-const dir = process.argv[3];
-const dist = process.argv[4];
-const size = parseInt(process.argv[5]);
-const suffix = process.argv[6];
-
+const dir = process.argv[2];
+const dist = process.argv[3];
+const size = parseInt(process.argv[4]);
+const suffix = process.argv[5] || "";
 /**
  * used in gulp for resizing images to assets build dir
  *
@@ -16,7 +15,8 @@ const suffix = process.argv[6];
  * @param {number} size image cropping size in px
  * @param {string} suffix addition to image name
  */
-glob(dir, function (err, files) {
+
+glob(dir+'/**/*.{jpg,png}', function (err, files) {
   if (err != null) { throw err; }
   fs.mkdirSync(dist, { recursive: true });
   files.forEach(function(inputFile) {

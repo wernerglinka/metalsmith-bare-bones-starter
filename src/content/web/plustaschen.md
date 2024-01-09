@@ -8,7 +8,7 @@ createdAt: 2017-09-16 10:55:44
 
 project:
   summary: Online calculator for bags
-  previewImage: "previews/plustaschen.jpg"
+  previewImage: "previews/plustaschen.webp"
   usedTechnic: WordPress, Laravel, Parsley.JS
   format: <a href="https://plustaschen.de/" title="plustaschen.de" target="_blank">plustaschen.de</a>
   year: since 2017

@@ -6,7 +6,7 @@ createdAt: 2018-06-22 13:27:23
 
 project:
   summary: PDF with JavaScript
-  previewImage: "previews/jspdf.jpg"
+  previewImage: "previews/jspdf.webp"
   usedTechnic: jsPDF
   format: A4, <a href="https://github.com/AndreKelling/jspdf-template/" rel="nofollow noreferrer noopener" target="_blank" title="go to github">on Github</a>
   year: 2018

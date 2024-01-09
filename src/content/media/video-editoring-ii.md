@@ -8,7 +8,7 @@ createdAt: 2015-04-03 17:37:42
 
 project:
   summary: 1 Minute - Fabrique
-  previewImage: "previews/videoedit.jpg"
+  previewImage: "previews/videoedit.webp"
   usedTechnic: Adobe Premiere, Ableton, After Effects
   format: 640 x 480 px
   year: 2012

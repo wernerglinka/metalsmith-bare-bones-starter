@@ -8,7 +8,7 @@ createdAt: 2017-09-16 14:22:31
 
 project:
   summary: Company website
-  previewImage: "previews/gartenzebra.jpg"
+  previewImage: "previews/gartenzebra.webp"
   usedTechnic: WordPress, Playwright JS, Pest PHP
   format: <a href="https://gartenzebra.de" target="_blank" title="Gartenzebra website">gartenzebra.de</a>
   year: since 2016

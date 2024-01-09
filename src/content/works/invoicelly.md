@@ -6,7 +6,7 @@ createdAt: 2018-10-25 12:25:09
 
 project:
   summary: Billing Tool
-  previewImage: "previews/invoicelly.png"
+  previewImage: "previews/invoicelly.webp"
   usedTechnic: React, Redux, Jest, Firebase, jsPDF
   format: <a href="https://invoicelly.andrekelling.de/" target="_blank" title="go to App">Invoicelly App</a>
   year: 2018

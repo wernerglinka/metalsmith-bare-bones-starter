@@ -6,7 +6,7 @@ createdAt: 2018-03-28 08:35:38
 
 project:
   summary: Slide presentation
-  previewImage: "previews/service-worker.jpg"
+  previewImage: "previews/service-worker.webp"
   usedTechnic: 
   format: slides.com
   year: 2018

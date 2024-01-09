@@ -6,7 +6,7 @@ createdAt: 2018-04-18 12:01:15
 
 project:
   summary: Wordpress plugin
-  previewImage: "previews/mapple.jpg"
+  previewImage: "previews/mapple.webp"
   usedTechnic: Wordpress, Google Maps API
   format: <a href="https://wordpress.org/plugins/mapple/" rel="nofollow noreferrer noopener" target="_blank" title="go to plugin page">Plugin page</a>
   year: 2018
