@@ -15,6 +15,7 @@ ak-slider {
 .slider--pager > span {
 	flex-basis: 25%;
 	border-right: 1px dotted $c-lightblack;
+	align-self: end;
 	box-sizing: border-box;
 	background: transparent;
 	transition: all 200ms ease-in;

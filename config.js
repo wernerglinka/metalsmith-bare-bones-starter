@@ -5,6 +5,14 @@ const srcAssetsRootDir = `${srcDir}assets-root/`
 const srcLayoutsDir = `${srcDir}layouts/`
 const cssFilePath = `${srcAssetsDir}style.css`
 const jsFilePath = `${srcAssetsDir}main.js`
+const imageDirs = {
+  src: `${srcDir}images-original/*.{jpg,png,svg}`,
+  srcPreviews: `${srcDir}images-original/previews/*.{jpg,png}`,
+  srcContent: `${srcDir}images-original/content/**/*.{jpg,png}`,
+  dist: `${srcAssetsDir}images`,
+  distPreviews: `${srcAssetsDir}images/previews`,
+  distContent: `${srcAssetsDir}images/content`
+}
 
 exports.srcDir = srcDir
 exports.distDir = distDir
@@ -13,6 +21,8 @@ exports.srcAssetsRootDir = srcAssetsRootDir
 exports.cssFilePath = cssFilePath
 exports.jsFilePath = jsFilePath
 exports.srcLayoutsDir = srcLayoutsDir
+exports.imageDirs = imageDirs
+
 exports.svgSymbolsPath = `${srcLayoutsDir}svg-symbols.svg`
 exports.criticalCssPath = `${srcLayoutsDir}critical.css`
 

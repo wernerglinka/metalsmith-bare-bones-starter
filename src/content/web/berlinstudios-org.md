@@ -13,11 +13,11 @@ project:
   format: <a target="_blank" href="https://berlinstudios.org" title="berlinstudios.org">berlinstudios.org</a>
   year: since 2012
   slides:
-    - { image: "content/berlinstudios_org-home", ext: "png", title: "Homepage" }
-    - { image: "content/berlinstudios_org-dvlpmt", ext: "png", title: "Development" }
-    - { image: "content/berlinstudios_org-map", ext: "png", title: "OpenStreetMap" }
-    - { image: "content/berlinstudios_org-studios", ext: "png", title: "Studios and subsections" }
-    - { image: "content/berlinstudios_org-ateliers-mobile", ext: "png", title: "Mobile view" }
+    - { image: "content/berlinstudios_org-home", title: "Homepage" }
+    - { image: "content/berlinstudios_org-dvlpmt", title: "Development" }
+    - { image: "content/berlinstudios_org-map", title: "OpenStreetMap" }
+    - { image: "content/berlinstudios_org-studios", title: "Studios and subsections" }
+    - { image: "content/berlinstudios_org-ateliers-mobile", title: "Mobile view" }
     
 seo:
   title: berlinStudios

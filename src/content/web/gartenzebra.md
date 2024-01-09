@@ -13,10 +13,10 @@ project:
   format: <a href="https://gartenzebra.de" target="_blank" title="Gartenzebra website">gartenzebra.de</a>
   year: since 2016
   slides:
-    - { image: "content/gartenzebra-home", ext: "png", title: "Homepage" }
-    - { image: "content/gartenzebra-content", ext: "jpg", title: "Content" }
-    - { image: "content/gartenzebra-contact", ext: "png", title: "Contact-form view" }
-    - { image: "content/schreddern-gartenzebra", ext: "jpg", title: "Print works" }
+    - { image: "content/gartenzebra-home", title: "Homepage" }
+    - { image: "content/gartenzebra-content", title: "Content" }
+    - { image: "content/gartenzebra-contact", title: "Contact-form view" }
+    - { image: "content/schreddern-gartenzebra", title: "Print works" }
    
 seo:
   title: Gartenzebra

@@ -11,8 +11,8 @@ project:
   format: A4, <a href="https://github.com/AndreKelling/jspdf-template/" rel="nofollow noreferrer noopener" target="_blank" title="go to github">on Github</a>
   year: 2018
   slides:
-    - { image: "content/jspdf-invoice", ext: "jpg", title: invoice print out one page }
-    - { image: "content/jspdf-codelines", ext: "jpg", title: a glance into the code }
+    - { image: "content/jspdf-invoice", title: invoice print out one page }
+    - { image: "content/jspdf-codelines", title: a glance into the code }
     
 seo:
   title: jsPDF template

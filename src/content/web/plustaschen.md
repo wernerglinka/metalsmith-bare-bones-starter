@@ -13,10 +13,10 @@ project:
   format: <a href="https://plustaschen.de/" title="plustaschen.de" target="_blank">plustaschen.de</a>
   year: since 2017
   slides:
-    - { image: "content/plustaschen-home", ext: "png", title: "Homepage" }
-    - { image: "content/plustaschen-category", ext: "png", title: "Category view" }
-    - { image: "content/plustaschen-farbwahl", ext: "png", title: "Calculator view" }
-    - { image: "content/plustaschen-kalkulator", ext: "png", title: "Calculator view 2" }
+    - { image: "content/plustaschen-home", title: "Homepage" }
+    - { image: "content/plustaschen-category", title: "Category view" }
+    - { image: "content/plustaschen-farbwahl", title: "Calculator view" }
+    - { image: "content/plustaschen-kalkulator", title: "Calculator view 2" }
    
 seo:
   title: Plus+Taschen

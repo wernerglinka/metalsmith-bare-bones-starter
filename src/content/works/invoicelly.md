@@ -11,8 +11,8 @@ project:
   format: <a href="https://invoicelly.andrekelling.de/" target="_blank" title="go to App">Invoicelly App</a>
   year: 2018
   slides:
-    - { image: "content/invoicelly-estimates", ext: "png", title: Login page }
-    - { image: "content/invoicelly-login", ext: "png", title: UI example }
+    - { image: "content/invoicelly-estimates", title: Login page }
+    - { image: "content/invoicelly-login", title: UI example }
     
 seo:
   title: Invoicelly App

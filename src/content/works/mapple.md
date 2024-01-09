@@ -11,8 +11,8 @@ project:
   format: <a href="https://wordpress.org/plugins/mapple/" rel="nofollow noreferrer noopener" target="_blank" title="go to plugin page">Plugin page</a>
   year: 2018
   slides:
-    - { image: "content/mapple-be-post", ext: "jpg", title: "Back End: Clients Posttype with auto-fulfill meta field" }
-    - { image: "content/mapple-fe-output", ext: "jpg", title: "Front End: Clients map with content and clients table" }
+    - { image: "content/mapple-be-post", title: "Back End: Clients Posttype with auto-fulfill meta field" }
+    - { image: "content/mapple-fe-output", title: "Front End: Clients map with content and clients table" }
     
 seo:
   title: mapple

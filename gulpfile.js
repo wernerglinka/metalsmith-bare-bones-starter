@@ -6,7 +6,6 @@ const svgmin = require("gulp-svgmin")
 const svgSymbols = require("gulp-svg-symbols")
 const imageminJpegRecompress = require("imagemin-jpeg-recompress")
 const imageminPngquant = require("imagemin-pngquant")
-const responsiveImages = require('gulp-sharp-responsive')
 
 const production = process.env.NODE_ENV === "production"
 // const production = false;
@@ -23,7 +22,7 @@ const postcss = require("gulp-postcss")
 const cssnano = require("cssnano")
 const noop = require("gulp-noop")
 const browserSync = require("browser-sync").create()
-const { srcLayoutsDir, criticalCssPath, browserSyncPort, srcDir, srcAssetsRootDir, srcAssetsDir } = require("./config")
+const { srcLayoutsDir, criticalCssPath, browserSyncPort, srcDir, srcAssetsRootDir, srcAssetsDir, imageDirs } = require("./config")
 
 const svgOriginalFiles = `${srcDir}svg-original/**/*`
 const outputDir = srcAssetsDir
@@ -36,12 +35,6 @@ const paths = {
   scripts: {
     entries: [`${srcDir}js/app.entry.js`],
     src: [`${srcDir}js/**/*.js`]
-  },
-  images: {
-    src: `${srcDir}images-original/**/*`,
-    srcContent: `${srcDir}images-original/content/**/*.{jpg,png}`,
-    dist: `${outputDir}/images`,
-    distContent: `${outputDir}/images/content`
   },
   site: [
     `${srcDir}assets/**/*`,
@@ -107,51 +100,59 @@ exports.stylelint = stylelint
 
 /** images * */
 
-const imagesAll = () =>
-  gulp
-    .src(paths.images.src)
-    .pipe(
-      imagemin(
-        [
-          imageminJpegRecompress({
-            loops: 4,
-            min: 50,
-            max: 95,
-            quality: "high"
-          }),
-          imageminPngquant()
-        ],
-        {
-          verbose: true
-        }
-      )
+const imagePipe = () => {
+  return imagemin(
+      [
+        imageminJpegRecompress({
+          loops: 4,
+          min: 50,
+          max: 95,
+          quality: "high"
+        }),
+        imageminPngquant()
+      ],
+      {
+        verbose: true
+      }
     )
-    .pipe(gulp.dest(paths.images.dist))
+}
 
-const imagesContent = () =>
-  gulp
-    .src(paths.images.srcContent)
-    .pipe(
-      responsiveImages({
-        formats: [
-          { width: 444, rename: { suffix: "-md" } },
-          { width: 888, rename: { suffix: "-lg" } },
-        ]
-      })
-    )
-    .pipe(
-      imagemin(
-        [
-          imageminPngquant()
-        ],
-        {
-          verbose: true
-        }
-      )
-    )
-    .pipe(gulp.dest(paths.images.distContent))
+const imagesRoot = () => {
+  return gulp
+    .src(imageDirs.src)
+    .pipe(imagePipe())
+    .pipe(gulp.dest(imageDirs.dist))
+}
+const imagesPreview = () => {
+  return gulp
+    .src(imageDirs.srcPreviews)
+    .pipe(imagePipe())
+    .pipe(gulp.dest(imageDirs.distPreviews))
+}
+const contentImagesResize444 = (done) =>
+  exec(`node image-resize.js ${imageDirs.srcContent} ${imageDirs.distContent} 444 -md`, (err, stdout, stderr) => {
+  console.log(stdout)
+  console.log(stderr)
+  done(err)
+})
+const contentImagesResize888 = (done) =>
+  exec(`node image-resize.js ${imageDirs.srcContent} ${imageDirs.distContent} 888 -lg`, (err, stdout, stderr) => {
+  console.log(stdout)
+  console.log(stderr)
+  done(err)
+})
+const imagesContent = (done) => {
+  return gulp.parallel(
+    contentImagesResize444,
+    contentImagesResize888
+  )(done)
+}
 
-const images = gulp.series(imagesAll, imagesContent)
+const images = gulp.series(
+  imagesRoot,
+  imagesPreview,
+  imagesContent
+)
 exports.images = images
 
 /** svg symbols * */
@@ -263,7 +264,7 @@ const watch = () => {
 
   gulp.watch(paths.scripts.src, gulp.series(scripts, buildMetalsmith))
 
-  gulp.watch(paths.images.src, gulp.series(images, buildMetalsmith))
+  gulp.watch(imageDirs.src, gulp.series(images, buildMetalsmith))
 }
 
 exports.watch = watch
