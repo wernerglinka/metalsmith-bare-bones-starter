@@ -7,28 +7,32 @@
     <h1>{{ seo.title }}</h1>
     <h2>{{ seo.description }}</h2>
 
-    <ak-slider>
-      <h3>{{ project.slides[0].title }}</h3>
-      <img
-        src="{{ imagePath }}{{ project.slides[0].image }}-md.{{ project.slides[0].ext }}"
-        srcset="{{ imagePath }}{{ project.slides[0].image }}-lg.{{ project.slides[0].ext }} 2x"
-        alt="{{ project.slides[0].title }}"
-      >
+    {{ project.beforeSlider | safe }}
 
-      <nav class="slider--pager">
-        {% for slide in project.slides %}
-          <span
-            data-image="{{ imagePath }}{{ slide.image }}-md.{{ slide.ext }}"
-            data-image2x="{{ imagePath }}{{ slide.image }}-lg.{{ slide.ext }}"
-            data-image-title="{{ slide.title }}"
-            title="Show {{ slide.title }}"
-            role="button"
-          >
+    {% if project.slides[0] %}
+      <ak-slider>
+        <h3>{{ project.slides[0].title }}</h3>
+        <img
+          src="{{ imagePath }}{{ project.slides[0].image }}-md.{{ project.slides[0].ext }}"
+          srcset="{{ imagePath }}{{ project.slides[0].image }}-lg.{{ project.slides[0].ext }} 2x"
+          alt="{{ project.slides[0].title }}"
+        >
+
+        <nav class="slider--pager">
+          {% for slide in project.slides %}
+            <span
+              data-image="{{ imagePath }}{{ slide.image }}-md.{{ slide.ext }}"
+              data-image2x="{{ imagePath }}{{ slide.image }}-lg.{{ slide.ext }}"
+              data-image-title="{{ slide.title }}"
+              title="Show {{ slide.title }}"
+              role="button"
+            >
           <img src="{{ imagePath }}{{ slide.image }}-md.{{ slide.ext }}" alt="{{ slide.title }}">
         </span>
-        {% endfor %}
-      </nav>
-    </ak-slider>
+          {% endfor %}
+        </nav>
+      </ak-slider>
+    {% endif %}
 
     <div class="details">
       {{ components.details("wrench", "Techs", project.usedTechnic) }}

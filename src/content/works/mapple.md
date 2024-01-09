@@ -1,6 +1,8 @@
 ---
 layout: project-page.njk
 collection: works
+date: 2018-06-22 13:26:30
+createdAt: 2018-04-18 12:01:15
 
 project:
   summary: Wordpress plugin

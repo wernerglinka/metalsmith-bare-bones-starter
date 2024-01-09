@@ -126,7 +126,8 @@ Metalsmith(__dirname)
   )
   .use(collections({
     works: {
-      refer: false // if true, an error occurs
+      refer: false, // if true, an error occurs
+      reverse: true // newest date first
     }
   }))
   .use(layouts(templateConfig))

@@ -1,6 +1,8 @@
 ---
 layout: project-page.njk
 collection: works
+date: 2018-06-22 13:35:12
+createdAt: 2018-06-22 13:27:23
 
 project:
   summary: PDF with JavaScript
