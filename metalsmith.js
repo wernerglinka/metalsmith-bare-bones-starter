@@ -24,8 +24,9 @@ const spaceToDash = (string) => string.replace(/\s+/g, "-")
 const condenseTitle = (string) => string.toLowerCase().replace(/\s+/g, "")
 const UTCdate = (date) => date.toUTCString("M d, yyyy")
 const blogDate = (date) => date.toLocaleString("en-US", { year: "numeric", month: "long", day: "numeric" })
-const trimSlashes = (string) => string.replace(/(^\/)|(\/$)/g, "\/")
-const pathMdLink = (string) => string.replace(/\.md/g, "")
+const trimSlashes = (string) => string.replace(/(^\/)|(\/$)/g, "")
+const pathMdLink = (string) => string.replace(/\.md/g, "") + "/"
+
 const formatBytes = (bytes) => {
   if (bytes < 1024) {
     return bytes + ' Bytes';
