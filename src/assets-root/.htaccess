@@ -1,0 +1,116 @@
+# Do not show directory indexes (strongly recommended)
+Options -Indexes
+
+# Do not use multiviews (v301)
+Options -MultiViews
+
+# Do follow symbolic links
+Options +FollowSymLinks
+# Options +SymLinksifOwnerMatch
+
+# Character encoding: Serve text/html or text/plain as UTF-8
+AddDefaultCharset UTF-8
+
+ErrorDocument 404 /404.html
+
+# -----------------------------------------------------------------------------------------------
+# 4. Protect from XSS with Apache headers
+# -----------------------------------------------------------------------------------------------
+
+<IfModule mod_headers.c>
+  # prevent site from being loaded in an iframe on another site
+  # you will need to remove this one if you want to allow external iframes
+  Header always append X-Frame-Options SAMEORIGIN
+
+  # To prevent cross site scripting (IE8+ proprietary)
+  Header set X-XSS-Protection "1; mode=block"
+
+  # Optionally (O) prevent mime-based attacks via content sniffing (IE+Chrome)
+  # Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+
+# -----------------------------------------------------------------------------------------------
+# 5. Prevent access to various types of files (v301)
+#
+# Note that some of these rules are duplicated by RewriteRules or other .htaccess files, as we
+# try to maintain two layers of protection when/where possible.
+# -----------------------------------------------------------------------------------------------
+
+# 5A. Block access to inc, info, info.json/php, module/php, sh, sql and composer files
+# -----------------------------------------------------------------------------------------------
+
+<FilesMatch "\.(inc|info|info\.(json|php)|module|module\.php|sh|sql)$|^\..*$|composer\.(json|lock)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+  </IfModule>
+</FilesMatch>
+
+
+# 5B. Block bak, conf, dist, ini, log, orig, sh, sql, swo, swp, ~, and more
+# -----------------------------------------------------------------------------------------------
+
+<FilesMatch "(^#.*#|\.(bak|conf|dist|in[ci]|log|orig|sh|sql|sw[op])|~)$">
+  <IfModule mod_authz_core.c>
+     Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+  </IfModule>
+</FilesMatch>
+
+# -----------------------------------------------------------------------------------------------
+# 7. Set default directory index files
+# -----------------------------------------------------------------------------------------------
+
+DirectoryIndex index.html
+
+
+## EXPIRES CACHING ##
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access 1 year"
+ExpiresByType image/jpeg "access 1 year"
+ExpiresByType image/gif "access 1 year"
+ExpiresByType image/png "access 1 year"
+ExpiresByType text/css "access 1 day"
+ExpiresByType text/html "access 1 day"
+ExpiresByType application/pdf "access 1 month"
+ExpiresByType text/x-javascript "access 1 day"
+ExpiresByType application/x-shockwave-flash "access 1 month"
+ExpiresByType image/x-icon "access 1 year"
+ExpiresDefault "access 1 month"
+</IfModule>
+## EXPIRES CACHING ##
+# 1 Month for most static assets
+<filesMatch ".(jpg|jpeg|png|gif|js|ico)$">
+Header set Cache-Control "max-age=2592000, public"
+</filesMatch>
+<filesMatch  "sw.js$">
+Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+</filesMatch>
+# gzip compression
+<IfModule mod_filter.c>
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css text/javascript
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+AddOutputFilterByType DEFLATE image/svg+xml
+#skips old browsers without gzip
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+BrowserMatch \bMSIE\s7 !no-gzip !gzip-only-text/html
+</IfModule>
+</IfModule>
+
+RewriteEngine on
+# redirect to non www
+RewriteCond %{HTTP_HOST} ^www\.andrekelling\.de [NC]
+RewriteRule ^(.*)$ https://andrekelling.de/$1 [L,R=301]
+
+# force https
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

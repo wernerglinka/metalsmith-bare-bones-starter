@@ -56,4 +56,5 @@ dist/
 src/assets/**/*
 !src/assets/icons
 !src/assets/fonts
+!src/assets-root/.htaccess
 src/layouts/critical.css
