@@ -110,6 +110,7 @@ Metalsmith(__dirname)
     criticalCss: loadCriticalCss(),
     cssFilesize: getFilesize(cssFilePath),
     jsFilesize: getFilesize(jsFilePath),
+    isProduction,
   })
   .use(drafts(!isProduction))
   .use(

@@ -24,3 +24,6 @@
   {{ criticalCss | safe }}
 </style>
 
+{% if isProduction %}
+  <script defer data-domain="andrekelling.de" src="https://plausible.io/js/plausible.js"></script>
+{% endif %}
