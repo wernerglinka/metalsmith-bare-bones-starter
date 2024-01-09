@@ -114,7 +114,3 @@ RewriteRule ^(.*)$ https://andrekelling.de/$1 [L,R=301]
 # force https
 RewriteCond %{HTTPS} off
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# redirect old content
-RewriteCond %{REQUEST_URI} !^/media
-RewriteRule ^/?(.*)$ https://%{HTTP_HOST}/works/ [R=301,L]
