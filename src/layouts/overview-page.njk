@@ -1,0 +1,33 @@
+{% import "./macros/components.njk" as components %}
+
+{% extends "layout.njk" %}
+
+{% block body %}
+  <div class="wrapper">
+    <h1>{{ seo.title }}</h1>
+    <h2>{{ seo.description }}</h2>
+    {{ contents | safe }}
+
+    {% if collections.works.length %}
+      <ul class="overview-nav">
+        {% for item in collections.works  %}
+          <li class="overview__item">
+            <a class="overview__link" href="{{ basePath }}/{{ item.path | pathMdLink }}">
+              <h3>{{ item.seo.title }}</h3>
+
+              {% if item.project.previewImage %}
+                <div class="prevpic"><img src="{{ imagePath }}{{ item.project.previewImage }}" alt="{{ item.seo.title }} preview image" />
+                  {% if item.project.summary %}
+                    <div class="prevpic__summary">{{item.project.summary}}</div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      No items found here...
+    {% endif %}
+  </div>
+{% endblock %}

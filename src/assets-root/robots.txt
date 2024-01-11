@@ -1,0 +1,7 @@
+# Website Sitemap
+# Sitemap: https://andrekelling.de/sitemap.xml
+
+# Crawlers Setup
+User-agent: *
+
+

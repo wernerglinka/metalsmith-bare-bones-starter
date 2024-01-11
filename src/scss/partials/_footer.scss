@@ -1,0 +1,50 @@
+/* Footer
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> */
+.footer {
+	text-align: center;
+	padding: 60px 0 120px;
+	color: $c-grey;
+	border-top: 1px dashed $c-darkgreen;
+}
+
+.footer-container {
+	width: 100%;
+	padding: 8px;
+	background: rgba($c-svg-black, .8);
+	position: relative;
+	bottom: 0;
+	border-top: 1px solid $c-green;
+	box-shadow: 0 0 4px #999;
+	color: $c-white;
+	z-index: 99;
+	backdrop-filter: blur(5px);
+
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		display: inline-block;
+		margin-right: 40px;
+
+		svg {
+			fill: currentcolor;
+			width: 20px;
+		}
+	}
+
+	&__links {
+		vertical-align: top;
+		line-height: 2;
+	}
+
+	@media (height >= 606px) {
+		position: fixed;
+	}
+}
+
+.credits {
+  font-style: italic;
+}
+

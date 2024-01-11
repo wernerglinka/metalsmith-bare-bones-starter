@@ -1,0 +1,30 @@
+{% extends "layout.njk" %}
+
+{% block body %}
+  <div class="wrapper">
+    <h1>{{ title }}</h1>
+    <h2>{{ subtitle | safe }}</h2>
+
+
+    <div class="about-pic">
+      <picture>
+        <source
+          srcset="{{ imagePath }}content/andre_kelling-in-the-wild-md.webp 500w,
+                  {{ imagePath }}content/andre_kelling-in-the-wild-lg.webp 668w"
+          media="(min-width: 500px)"
+        />
+        <img
+          src="{{ imagePath }}content/andre_kelling-in-the-wild-hoch-lg.webp"
+          srcset="{{ imagePath }}content/andre_kelling-in-the-wild-hoch-lg.webp 2x"
+          alt="André Kelling in the wild"
+        />
+      </picture>
+
+      <div class="about-pic__caption">
+        Hiking on the Monte Cinto on the island of Corsica.
+      </div>
+    </div>
+
+    {{ contents | safe }}
+  </div>
+{% endblock %}

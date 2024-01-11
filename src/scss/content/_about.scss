@@ -1,0 +1,113 @@
+@use 'sass:color';
+
+/* About
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> */
+.about-page {
+	p,
+	li {
+		margin: 0;
+		line-height: 17px;
+		list-style-type: none;
+	}
+
+	.content ul {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.about-pic {
+	margin: 2rem auto;
+	overflow: hidden;
+
+	> img {
+		cursor: none;
+	}
+
+	&__caption {
+		font-size: .75rem;
+		text-align: right;
+	}
+
+	a {
+		color: $c-lightblack;
+		text-decoration: underline;
+	}
+}
+
+.twocol.fleft > ul > li {
+	&:nth-child(4n+1) {
+		color: color.adjust($c-middlegrey, $lightness: -15%);
+	}
+
+	&:nth-child(4n+3) {
+		font-style: oblique;
+		color: color.adjust($c-middlegrey, $lightness: -5%);
+	}
+
+	&:nth-child(4n+4) {
+		color: color.adjust($c-middlegrey, $lightness: 5%);
+		margin-bottom: 16px;
+	}
+}
+
+.twocol.fright {
+	h2 {
+		color: $c-orange;
+	}
+
+	h3 {
+		line-height: 17px;
+		font-family: $f-main;
+		font-size: 16px;
+		color: $c-purple;
+		font-weight: $fw-bold;
+	}
+
+	> ul > li { /* stylelint-disable-line no-descending-specificity */
+		color: $c-lightorange;
+
+		&.per10 {
+			color: color.adjust($c-lightorange, $lightness: 30%);
+		}
+
+		&.per20 {
+			color: color.adjust($c-lightorange, $lightness: 20%);
+		}
+
+		&.per30 {
+			color: color.adjust($c-lightorange, $lightness: 15%);
+		}
+
+		&.per40 {
+			color: color.adjust($c-lightorange, $lightness: 10%);
+		}
+
+		&.per50 {
+			color: color.adjust($c-lightorange, $lightness: 5%);
+		}
+
+		&.per60 {
+			color: color.adjust($c-lightorange, $lightness: -10%);
+		}
+
+		&.per70 {
+			color: color.adjust($c-lightorange, $lightness: -12%);
+		}
+
+		&.per80 {
+			color: color.adjust($c-lightorange, $lightness: -15%);
+			text-shadow: 0 0 3px $c-gold;
+		}
+
+		&.per90 {
+			color: color.adjust($c-lightorange, $lightness: -18%);
+			text-shadow: 0 0 3px $c-gold;
+		}
+
+		&.per100 {
+			color: color.adjust($c-lightorange, $lightness: -23%);
+			text-shadow: 0 0 1px $c-gold;
+		}
+	}
+}

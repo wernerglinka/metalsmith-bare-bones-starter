@@ -1,0 +1,9 @@
+<nav class="mainnav js-mainnav">
+  <ul>
+    {% for menuItem in nav.menu %}
+      <li class="item-{{ loop.index }}">
+        <a href="{{ basePath }}{{ menuItem.url }}">{{ menuItem.label }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

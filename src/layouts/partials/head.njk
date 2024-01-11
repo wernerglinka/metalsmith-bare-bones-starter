@@ -1,0 +1,28 @@
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>{{ seo.title }}</title>
+<meta name="description" content="{{ seo.description }}"/>
+<meta name="author" content="André Kelling"/>
+<meta name="generator" content="metalsmith"/>
+
+<link rel="apple-touch-icon" sizes="180x180" href="{{ basePath }}/assets/icons/apple-touch-icon.png?v={{ faviconHash }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ basePath }}/assets/icons/favicon-32x32.png?v={{ faviconHash }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ basePath }}/assets/icons/favicon-16x16.png?v={{ faviconHash }}">
+<link rel="manifest" href="{{ basePath }}/site.webmanifest?v={{ faviconHash }}">
+<link rel="mask-icon" href="{{ basePath }}/assets/icons/safari-pinned-tab.svg?v={{ faviconHash }}" color="#99af78">
+<link rel="shortcut icon" href="{{ basePath }}/assets/icons/favicon.ico?v={{ faviconHash }}">
+<meta name="msapplication-TileColor" content="#8A9478">
+<meta name="theme-color" content="#8A9478">
+
+<link rel="preload" href="{{ basePath }}/assets/style.css?v={{ styleHash }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ basePath }}/assets/style.css?v={{ styleHash }}"></noscript>
+<script src="{{ basePath }}/assets/main.js?v={{ scriptHash }}" async></script>
+
+<style>
+  {{ criticalCss | safe }}
+</style>
+
+{% if isProduction %}
+  <script defer data-domain="andrekelling.de" src="https://plausible.io/js/plausible.js"></script>
+{% endif %}

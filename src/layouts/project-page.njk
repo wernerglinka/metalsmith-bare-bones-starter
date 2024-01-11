@@ -1,0 +1,47 @@
+{% import "./macros/components.njk" as components %}
+
+{% extends "layout.njk" %}
+
+{% block body %}
+  <div class="wrapper">
+    <h1>{{ seo.title }}</h1>
+    <h2>{{ seo.description }}</h2>
+
+    {{ project.beforeSlider | safe }}
+
+    {% if project.slides[0] %}
+      <ak-slider>
+        <h3>{{ project.slides[0].title }}</h3>
+        <img
+          src="{{ imagePath }}{{ project.slides[0].image }}-md.webp"
+          srcset="{{ imagePath }}{{ project.slides[0].image }}-lg.webp 2x"
+          alt="{{ project.slides[0].title }}"
+        >
+
+        <nav class="slider--pager">
+          {% for slide in project.slides %}
+            <span
+              data-image="{{ imagePath }}{{ slide.image }}-md.webp"
+              data-image2x="{{ imagePath }}{{ slide.image }}-lg.webp"
+              data-image-title="{{ slide.title }}"
+              title="Show {{ slide.title }}"
+              role="button"
+            >
+          <img src="{{ imagePath }}{{ slide.image }}-md.webp" alt="{{ slide.title }}">
+        </span>
+          {% endfor %}
+        </nav>
+      </ak-slider>
+    {% endif %}
+
+    <div class="details">
+      {{ components.details("wrench", "Techs", project.usedTechnic) }}
+      {{ components.details("file-o", "Format", project.format | safe) }}
+      {{ components.details("clock-o", "Year", project.year) }}
+    </div>
+
+    <div class="text">
+      {{ contents | safe }}
+    </div>
+  </div>
+{% endblock %}

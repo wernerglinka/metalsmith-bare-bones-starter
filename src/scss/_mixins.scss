@@ -1,0 +1,47 @@
+@mixin breakpoint($point) {
+  @media (min-width: $point) {
+    @content ;
+  }
+}
+
+@mixin clear {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+@mixin image-shadow($size: 8px) {
+  position: relative;
+
+  &::before,
+  &::after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 15px;
+    left: $size;
+    width: 50%;
+    top: 80%;
+    max-width: 300px;
+    background: $c-middlegrey;
+    box-shadow: 0 15px 10px $c-middlegrey;
+    transform: rotate(-3deg);
+  }
+
+  &::after {
+    transform: rotate(3deg);
+    right: $size;
+    left: auto;
+  }
+}

@@ -1,0 +1,10 @@
+{% extends "layout.njk" %}
+
+{% block body %}
+  <div class="wrapper js-home">
+    <h1>{{ title }}</h1>
+    {{ contents | safe }}
+  </div>
+
+  {% include "partials/filesizes.njk" %}
+{% endblock %}

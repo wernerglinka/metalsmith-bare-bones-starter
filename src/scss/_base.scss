@@ -1,0 +1,149 @@
+@use 'sass:color';
+
+/* Base
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> */
+
+body {
+	/* images/brillant.png */
+	background: $c-white-bg url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAAAAABzQ+pjAAAAFElEQVQIHWP48/0/029WBsb/DAwAJ4kE9Tid5T0AAAAASUVORK5CYII=') repeat;
+	overflow: hidden scroll;
+	font-family: $f-main;
+	font-size: 16px;
+	line-height: 24px;
+	text-align: left;
+	color: $c-lightblack;
+	border-top: 1px solid $c-green;
+	min-width: 320px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-feature-settings: "onum" 1;
+	font-kerning: normal;
+}
+
+p {
+	margin: 0 0 10px;
+}
+
+a {
+	color: $c-green;
+	text-decoration: none;
+	transition: color 200ms ease-in;
+
+	&:hover,
+	&:focus {
+		color: $c-orange;
+		text-decoration: none;
+
+		&.linkedin i {
+			color: #0061A2;
+		}
+
+		&.xing i {
+			color: #126567;
+		}
+
+		&.twitter i {
+			color: #48A0EC;
+		}
+
+		&.github i {
+			color: #171515;
+		}
+
+		&.stackoverflow i {
+			color: #BCBBBB;
+		}
+
+		&.instagram i {
+			color: #FFF;
+		}
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	line-height: 1em;
+}
+
+h1 {
+	font-size: 20px;
+	color: color.adjust($c-darkgreen, $lightness: -20%);
+	letter-spacing: .02em;
+	text-transform: uppercase;
+	margin: 0 0 .3em;
+}
+
+h2 {
+	font-size: 15px;
+	text-transform: uppercase;
+	margin: 0 0 6px;
+	color: $c-darkgreen;
+}
+
+h3 {
+	font-size: 14px;
+	text-transform: uppercase;
+	color: $c-lightgreen;
+}
+
+h4 {
+	font-family: $f-main;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+blockquote {
+	font-family: Georgia, serif;
+	font-size: 18px;
+	font-style: italic;
+	margin: 2.75em 0;
+	padding: 1em 40px;
+	line-height: 1.45;
+	position: relative;
+	color: color.adjust($c-middlegrey, $lightness: -10%);
+
+	&::before {
+		content: "\201C";
+		font-size: 80px;
+		position: absolute;
+		top: -.5em;
+		left: 50%;
+		margin-left: -27px;
+		color: color.adjust($c-middlegrey, $lightness: 20%);
+	}
+}
+
+img,
+svg {
+	height: auto;
+	display: block;
+}
+
+img {
+	position: relative;
+
+	&::before {
+		content: "🥺 Broken Image of " attr(alt);
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		text-align: center;
+		padding: 4px;
+		background-color: $c-lightgrey;
+		border-radius: 4px;
+		z-index: 2;
+	}
+
+	&::after {
+		content: "";
+		display: block;
+		min-height: 60px;
+	}
+}

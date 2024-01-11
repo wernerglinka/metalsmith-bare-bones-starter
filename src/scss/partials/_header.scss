@@ -1,0 +1,14 @@
+/* Header
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> */
+header {
+	position: relative;
+	z-index: 1;
+	margin: 0 auto;
+	padding: 12px 0 18px;
+	overflow: visible;
+	transition: padding 300ms ease-in-out;
+
+	@media (height >= 606px) {
+		padding-bottom: 26px;
+	}
+}

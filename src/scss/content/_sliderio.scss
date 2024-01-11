@@ -1,0 +1,56 @@
+ak-slider {
+	display: block;
+	margin-bottom: 20px;
+
+	> img {
+		margin-bottom: 20px;
+	}
+}
+
+.slider--pager {
+	display: flex;
+
+}
+
+.slider--pager > span {
+	flex-basis: 25%;
+	border-right: 1px dotted $c-lightblack;
+	align-self: end;
+	box-sizing: border-box;
+	background: transparent;
+	transition: all 200ms ease-in;
+	cursor: pointer;
+
+	&:hover,
+	&:focus {
+		background: $c-lightorange;
+
+		img {
+			opacity: .5;
+		}
+	}
+
+	&.active {
+		img {
+			opacity: .5;
+		}
+	}
+
+	&:last-of-type,
+	&:nth-of-type(4n) {
+		border-right-color: transparent;
+	}
+
+	@include breakpoint($brk-l) {
+		flex-basis: 12.5%;
+
+		&:nth-of-type(4n) {
+			border-right-color: $c-lightblack;
+		}
+
+		&:last-of-type,
+		&:nth-of-type(8n) {
+			border-right-color: transparent;
+		}
+	}
+}

@@ -1,0 +1,88 @@
+/* ==================================================
+stylesheet
+(for andrekelling.de)
+(c) 2018 by Andre Kelling
+================================================== */
+
+/* Breakpoints
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> */
+$brk-xs: 330px;
+$brk-s: 375px;
+$brk-m: 443px;
+$brk-l: 622px;
+$brk-xl: 766px;
+
+@import 'normalize';
+@import 'colors';
+@import 'mixins';
+@import 'icons';
+@import 'font';
+@import 'base';
+@import 'tools';
+@import 'components/spinner';
+@import 'components/prevpic';
+@import 'layout';
+@import 'svg';
+@import 'partials/logo';
+@import 'partials/header';
+@import 'partials/nav';
+@import 'content/index';
+@import 'content/overview';
+@import 'content/sliderio'; // named this because weird not syntax highlighting of phpstorm
+@import 'content/project-page';
+@import 'content/about';
+@import 'partials/footer';
+
+/* Print
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> */
+// use of !important because of critical inline CSS
+
+@media print {
+	body {
+		font-size: 12px !important;
+	}
+
+	header {
+		margin: 0 !important;
+	}
+
+	.logo {
+		width: 60px !important;
+	}
+
+	.main {
+		min-height: 0 !important;
+		margin: 0 !important;
+	}
+
+	.about-page .content {
+		width: 100% !important;
+	}
+
+	footer,
+	.about-pic {
+		display: none !important;
+	}
+}
+
+/* misc selection________________ */
+
+.mainnav {
+	a::selection {
+		background: $c-lightorange;
+		color: $c-white;
+	}
+
+	.item-1 a::selection {
+		background: $c-lightpurple;
+	}
+
+	.item-3 a::selection {
+		background: $c-turkey;
+	}
+}
+
+::selection {
+	background: $c-green;
+	color: $c-white;
+}

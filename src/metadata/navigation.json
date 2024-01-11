@@ -1,0 +1,12 @@
+{
+  "menu": [
+    {
+      "label": "Web has no",
+      "url": "/works/"
+    },
+    {
+      "label": "&",
+      "url": "/about/"
+    }
+  ]
+}
