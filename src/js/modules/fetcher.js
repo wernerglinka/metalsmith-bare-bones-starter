@@ -84,9 +84,8 @@ const Fetcher = (() => {
         _getContent(data, url)
       })
       .catch((error) => {
-        const offlineUrl = `${siteUrl}/offline/`
+        const offlineUrl = `${siteUrl}/404/`
         window.location.replace(offlineUrl)
-        // siteMain.classList.remove(transitionClass);
         console.error("Error:", error)
       })
   }
