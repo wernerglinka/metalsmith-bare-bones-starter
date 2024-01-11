@@ -11,7 +11,7 @@ Options +FollowSymLinks
 # Character encoding: Serve text/html or text/plain as UTF-8
 AddDefaultCharset UTF-8
 
-ErrorDocument 404 /404.html
+ErrorDocument 404 /404/
 
 # -----------------------------------------------------------------------------------------------
 # 4. Protect from XSS with Apache headers
