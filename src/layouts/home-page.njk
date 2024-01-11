@@ -1,7 +1,8 @@
 {% extends "layout.njk" %}
 
 {% block body %}
-  <div class="container js-home">
+  <div class="wrapper js-home">
+    <h1>{{ title }}</h1>
     {{ contents | safe }}
   </div>
 

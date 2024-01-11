@@ -1,5 +1,8 @@
 ---
 layout: home-page.njk
+date: 2023-12-06 21:48:57
+createdAt: 2010-10-26 04:39:33
+
 bodyClass: "homepage"
 title: André J. Kelling
 
