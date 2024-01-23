@@ -1,24 +1,31 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-const Metalsmith = require('metalsmith')
-const markdown = require('@metalsmith/markdown')
-const layouts = require('@metalsmith/layouts')
-const drafts = require('@metalsmith/drafts')
-const permalinks = require('@metalsmith/permalinks')
-const metadata = require('@metalsmith/metadata')
-const when = require('metalsmith-if')
-const htmlMinifier = require('metalsmith-html-minifier')
-const assets = require('metalsmith-static-files')
-const { dependencies } = require('./package.json')
+import { fileURLToPath } from 'node:url';
+import { dirname } from 'node:path';
+import Metalsmith from 'metalsmith';
+import markdown from '@metalsmith/markdown';
+import layouts from '@metalsmith/layouts';
+import drafts from '@metalsmith/drafts';
+import permalinks from '@metalsmith/permalinks';
+import metadata from '@metalsmith/metadata';
+import when from 'metalsmith-if';
+import htmlMinifier from 'metalsmith-html-minifier';
+import assets from 'metalsmith-static-files';
 
-const isProduction = process.env.NODE_ENV === 'production'
+// ESM does not currently import JSON modules by default.
+// Ergo we'll JSON.parse the file manually
+import * as fs from 'fs';
+const dependencies = JSON.parse( fs.readFileSync( './package.json' ) );
+
+const __dirname = dirname( fileURLToPath( import.meta.url ) );
+const isProduction = process.env.NODE_ENV === 'production';
 
 // functions to extend Nunjucks environment
-const spaceToDash = (string) => string.replace(/\s+/g, '-')
-const condenseTitle = (string) => string.toLowerCase().replace(/\s+/g, '')
-const UTCdate = (date) => date.toUTCString('M d, yyyy')
-const blogDate = (date) => date.toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-const trimSlashes = (string) => string.replace(/(^\/)|(\/$)/g, '')
+const spaceToDash = ( string ) => string.replace( /\s+/g, '-' );
+const condenseTitle = ( string ) => string.toLowerCase().replace( /\s+/g, '' );
+const UTCdate = ( date ) => date.toUTCString( 'M d, yyyy' );
+const blogDate = ( date ) => date.toLocaleString( 'en-US', { year: 'numeric', month: 'long', day: 'numeric' } );
+const trimSlashes = ( string ) => string.replace( /(^\/)|(\/$)/g, '' );
 
 // Define engine options for the inplace and layouts plugins
 const templateConfig = {
@@ -33,41 +40,41 @@ const templateConfig = {
       trimSlashes
     }
   }
-}
+};
 
-Metalsmith(__dirname)
-  .source('./src/content')
-  .destination('./build')
-  .clean(true)
-  .env('NODE_ENV', process.env.NODE_ENV)
-  .env('DEBUG', process.env.DEBUG)
-  .metadata({
+Metalsmith( __dirname )
+  .source( './src/content' )
+  .destination( './build' )
+  .clean( true )
+  .env( 'NODE_ENV', process.env.NODE_ENV )
+  .env( 'DEBUG', process.env.DEBUG )
+  .metadata( {
     msVersion: dependencies.metalsmith,
     nodeVersion: process.version
-  })
-  .use(drafts(!isProduction))
+  } )
+  .use( drafts( !isProduction ) )
   .use(
-    metadata({
+    metadata( {
       site: 'src/content/data/site.json',
       nav: 'src/content/data/navigation.json'
-    })
+    } )
   )
-  .use(markdown())
+  .use( markdown() )
   .use(
-    permalinks({
+    permalinks( {
       relative: false
-    })
+    } )
   )
-  .use(layouts(templateConfig))
+  .use( layouts( templateConfig ) )
   .use(
-    assets({
+    assets( {
       source: 'src/assets/',
       destination: 'assets/'
-    })
+    } )
   )
-  .use(when(isProduction, htmlMinifier()))
-  .build((err) => {
-    if (err) {
-      throw err
+  .use( when( isProduction, htmlMinifier() ) )
+  .build( ( err ) => {
+    if ( err ) {
+      throw err;
     }
-  })
+  } );
