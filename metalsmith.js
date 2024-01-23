@@ -15,7 +15,7 @@ import assets from 'metalsmith-static-files';
 // ESM does not currently import JSON modules by default.
 // Ergo we'll JSON.parse the file manually
 import * as fs from 'fs';
-const dependencies = JSON.parse( fs.readFileSync( './package.json' ) );
+const dependencies = JSON.parse( fs.readFileSync( './package.json' ) ).dependencies;
 
 const __dirname = dirname( fileURLToPath( import.meta.url ) );
 const isProduction = process.env.NODE_ENV === 'production';
@@ -26,6 +26,7 @@ const condenseTitle = ( string ) => string.toLowerCase().replace( /\s+/g, '' );
 const UTCdate = ( date ) => date.toUTCString( 'M d, yyyy' );
 const blogDate = ( date ) => date.toLocaleString( 'en-US', { year: 'numeric', month: 'long', day: 'numeric' } );
 const trimSlashes = ( string ) => string.replace( /(^\/)|(\/$)/g, '' );
+const thisYear = () => new Date().getFullYear();
 
 // Define engine options for the inplace and layouts plugins
 const templateConfig = {
@@ -37,7 +38,8 @@ const templateConfig = {
       condenseTitle,
       UTCdate,
       blogDate,
-      trimSlashes
+      trimSlashes,
+      thisYear
     }
   }
 };
