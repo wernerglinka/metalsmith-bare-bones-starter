@@ -62,11 +62,7 @@ Metalsmith( __dirname )
     } )
   )
   .use( markdown() )
-  .use(
-    permalinks( {
-      relative: false
-    } )
-  )
+  .use( permalinks() )
   .use( layouts( templateConfig ) )
   .use(
     assets( {
