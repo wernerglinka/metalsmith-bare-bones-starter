@@ -12,14 +12,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development DEBUG=@metalsmith* node metalsmith.js",
     "build": "cross-env NODE_ENV=production node metalsmith.js",
-    "serve": "browser-sync start --server 'build'"
-  },
-  "nodemonConfig": {
-    "watch": [
-      "src",
-      "templates"
-    ],
-    "ext": "js css scss njk json html md"
+    "serve": "browser-sync start --server 'build'",
+    "lint": "eslint --fix ."
   },
   "devDependencies": {
     "browser-sync": "^3.0.2",
@@ -29,7 +23,6 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.1.3",
-    "nodemon": "^3.0.2",
     "prettier": "^3.1.1"
   },
   "dependencies": {
