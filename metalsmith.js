@@ -1,5 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
+import { performance } from 'perf_hooks';
+import browserSync from 'browser-sync';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 import Metalsmith from 'metalsmith';
@@ -44,35 +46,64 @@ const templateConfig = {
   }
 };
 
-Metalsmith( __dirname )
-  .source( './src/content' )
-  .destination( './build' )
-  .clean( true )
-  .env( 'NODE_ENV', process.env.NODE_ENV )
-  .env( 'DEBUG', process.env.DEBUG )
-  .metadata( {
-    msVersion: dependencies.metalsmith,
-    nodeVersion: process.version
-  } )
-  .use( drafts( !isProduction ) )
-  .use(
-    metadata( {
-      site: 'src/content/data/site.json',
-      nav: 'src/content/data/navigation.json'
-    } )
-  )
-  .use( markdown() )
-  .use( permalinks() )
-  .use( layouts( templateConfig ) )
-  .use(
-    assets( {
-      source: 'src/assets/',
-      destination: 'assets/'
-    } )
-  )
-  .use( when( isProduction, htmlMinifier() ) )
-  .build( ( err ) => {
-    if ( err ) {
-      throw err;
+let devServer = null;
+let t1 = performance.now();
+
+export function msBuild() {
+  return (
+    Metalsmith( __dirname )
+      .clean( true )
+      .watch( isProduction ? false : [ 'src', 'layouts' ] )
+      .source( './src/content' )
+      .destination( './build' )
+      .clean( true )
+      .env( 'NODE_ENV', process.env.NODE_ENV )
+      //.env( 'DEBUG', process.env.DEBUG )
+      .metadata( {
+        msVersion: dependencies.metalsmith,
+        nodeVersion: process.version
+      } )
+      .use( drafts( !isProduction ) )
+      .use(
+        metadata( {
+          site: 'src/content/data/site.json',
+          nav: 'src/content/data/navigation.json'
+        } )
+      )
+      .use( markdown() )
+      .use( permalinks() )
+      .use( layouts( templateConfig ) )
+      .use(
+        assets( {
+          source: 'src/assets/',
+          destination: 'assets/'
+        } )
+      )
+      .use( when( isProduction, htmlMinifier() ) )
+  );
+};
+
+const ms = msBuild();
+ms.build( err => {
+  if ( err ) {
+    throw err;
+  }
+  /* eslint-disable no-console */
+  console.log( `Build success in ${ ( ( performance.now() - t1 ) / 1000 ).toFixed( 1 ) }s` );
+  if ( ms.watch() ) {
+    if ( devServer ) {
+      t1 = performance.now();
+      devServer.reload();
+    } else {
+      devServer = browserSync.create();
+      devServer.init( {
+        host: 'localhost',
+        server: './build',
+        port: 3000,
+        injectChanges: false,
+        reloadThrottle: 0
+      } );
     }
-  } );
+  }
+} );
+

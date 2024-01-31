@@ -16,6 +16,6 @@ This Metalsmith starter website is intended to help you to get started with buil
 
 The rest is left to your imagination.
 
-<a class="gitter-invite" href="https://gitter.im/metalsmith/community">
+<a class="gitter-invite" href="https://app.gitter.im/#/room/#metalsmith_community:gitter.im">
 <p>Join the Metalsmith community at <img src="/assets/images/gitter.png" alt="gitter" /> to discuss all-things Metalsmith.</p>
 </a>
