@@ -1,0 +1,21 @@
+---
+# SPECIAL 404 ERROR PAGE
+# This page is shown when someone visits a URL that doesn't exist
+# The filename "404.html" is a web server convention for error pages
+
+title: Page not found  # Simple title (no SEO object needed for error pages)
+layout: simple.njk     # Use the same layout as other pages
+permalink: false       # IMPORTANT: This prevents Metalsmith from changing the filename
+                      # We want this to stay as "404.html" not "404/index.html"
+---
+
+# Page not found
+
+<!-- This is the content shown to users when they visit a broken link -->
+<!-- You can customize this message and add helpful navigation -->
+<!-- Consider adding:
+- A search box
+- Links to popular pages
+- A link back to the home page
+- Contact information
+-->

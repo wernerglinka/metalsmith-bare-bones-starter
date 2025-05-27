@@ -1,0 +1,22 @@
+{
+  "_comment": "NAVIGATION STRUCTURE",
+  "_comment2": "This file defines the main navigation menu for your site",
+  "_comment3": "Access this in templates using {{ nav.menu }}",
+  "_comment4": "Each menu item needs: label (text), url (link), and bodyClass (for styling)",
+
+  "menu": [
+    {
+      "label": "Go Home",
+      "url": "/",
+      "bodyClass": "home"
+    },
+    {
+      "label": "Other Page",
+      "url": "/other-page",
+      "bodyClass": "otherPage"
+    }
+  ],
+
+  "_comment5": "To add more menu items, copy the structure above",
+  "_comment6": "Example: { \"label\": \"About\", \"url\": \"/about\", \"bodyClass\": \"about\" }"
+}

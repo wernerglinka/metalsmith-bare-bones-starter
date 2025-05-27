@@ -1,0 +1,38 @@
+{#
+  BASE LAYOUT TEMPLATE
+  This is the main template that wraps all pages on your site
+  It defines the basic HTML structure that every page will use
+
+  NUNJUCKS TEMPLATE SYNTAX:
+  - {{ variable }} outputs a variable
+  - {% tag %} is for logic (loops, conditions, includes, etc.)
+  - Comments use curly braces with hash symbols (like this block)
+#}
+
+<!doctype html>
+<html class="no-js" lang="">
+
+  <head>
+    {# Include the head partial which contains meta tags, CSS links, etc. #}
+    {% include "partials/head.njk" %}
+  </head>
+
+  <body class="{{ bodyClass }}">
+    {# The bodyClass variable comes from each page's frontmatter #}
+
+    {# Include the header partial which contains navigation #}
+    {% include "partials/header.njk" %}
+
+    <main>
+    {# This block will be replaced by content from child templates #}
+    {% block body %}
+    {# This comment shows where page content will be inserted #}
+    {% endblock %}
+    </main>
+
+    {# Include the footer partial #}
+    {% include "partials/footer.njk" %}
+
+  </body>
+
+</html>

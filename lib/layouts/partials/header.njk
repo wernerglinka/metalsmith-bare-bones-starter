@@ -1,0 +1,47 @@
+{#
+  HEADER PARTIAL - Site navigation and branding
+  This partial contains the site logo and main navigation menu
+#}
+
+<header>
+  <div class="container">
+    {# Site logo/brand - links back to homepage #}
+    <div class="brand">
+      <a class="home-link" href="/"><img src="/assets/images/metalsmith-logo-bug.png" alt="Metalsmith Starter"/></a>
+    </div>
+
+    {# Main navigation menu #}
+    <div class="main-menu">
+      <ul>
+        {#
+          Loop through navigation items from navigation.json
+          This is a Nunjucks for loop that creates a menu item for each entry
+        #}
+        {% for menuItem in nav.menu %}
+          <li>
+            <div>
+              {#
+                Conditional logic to handle the home page URL
+                If the URL is "/", set path to "home", otherwise use the URL
+                This helps with CSS styling for the current page
+              #}
+              {% if menuItem.url === "/" %}
+                {% set path = "home" %}
+              {% else %}
+                {% set path = menuItem.url %}
+              {% endif %}
+              {#
+                Create the actual link
+                - href comes from navigation.json
+                - class uses the trimSlashes filter to clean up the path
+                - link text comes from the label in navigation.json
+              #}
+              <a href={{ menuItem.url}} class="{{ path | trimSlashes }}">{{ menuItem.label }}</a>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+</header>

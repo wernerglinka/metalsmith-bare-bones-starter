@@ -33,9 +33,9 @@ Start off your Metalsmith journey with this bare-bones boilerplate. This starter
 
     Your site is now running at `http://localhost:3000`!
 
-    Open the `new-site` directory in your code editor of choice and edit `src/content/index.md`. Save your changes and the browser will update in real time!
+    Open the `new-site` directory in your code editor of choice and edit `src/index.md`. Save your changes and the browser will update in real time!
 
-1.  To tidy up your code with ESlint and Prettier, run: `npm run lint`.
+1.  To tidy up your code with ESlint and Prettier, run: `npm run lint` and `npm run format`.
 
 ## What's included?
 
@@ -43,13 +43,13 @@ A quick look at the top-level files and directories you'll see in this Metalsmit
 
     .
     ├── node_modules
+    ├── lib
     ├── src
-    ├── layouts
-    ├── .eslintrc.yml
+    ├── eslint.config.js
     ├── .gitignore
     ├── .gitattributes
     ├── .prettierignore
-    ├── .prettierrc.yml
+    ├── prettier.config.js
     ├── LICENSE
     ├── metalsmith.js
     ├── package-lock.json
@@ -60,13 +60,13 @@ A quick look at the top-level files and directories you'll see in this Metalsmit
 
 2.  **`src`**: This directory will contain all the content that makes up your site.
 
-3.  **`layouts`**: This directory will contain all the layouts partials that will be used to render your site.
+3.  **`lib`**: This directory will contain all the layouts, assets and data that will be used to render your site.
 
-4.  **`.eslintrc.yml`**: This file contains all rules for eslint.
+4.  **`.eslint.config.js`**: This file contains all rules for eslint.
 
 5.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
 
-7.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
+7.  **`.prettier.config.js`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
 
 6.  **`.prettierignore`**: This file tells prettier what files it should ignore.
 

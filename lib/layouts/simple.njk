@@ -1,0 +1,22 @@
+{#
+  SIMPLE PAGE TEMPLATE
+  This template extends the base layout and adds a simple container
+
+  TEMPLATE INHERITANCE:
+  - {% extends "layout.njk" %} means this template builds on top of layout.njk
+  - {% block body %} replaces the body block defined in layout.njk
+  - This is how you create different page layouts while keeping the same header/footer
+#}
+
+{% extends "layout.njk" %}
+
+{% block body %}
+  <div class="container">
+    {#
+      The 'contents' variable contains the processed Markdown content from your .md files
+      The 'safe' filter tells Nunjucks not to escape HTML tags
+      Without 'safe', HTML would be displayed as text instead of being rendered as HTML
+    #}
+    {{ contents | safe }}
+  </div>
+{% endblock %}

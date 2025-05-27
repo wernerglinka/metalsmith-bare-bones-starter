@@ -1,0 +1,26 @@
+{
+  "_comment": "GLOBAL SITE CONFIGURATION",
+  "_comment2": "This file contains site-wide settings that are available in all templates",
+  "_comment3": "Access these values in templates using {{ site.propertyName }}",
+
+  "title": "Metalsmith Bare-bones Starter",
+  "description": "Metalsmith Starter with Nunjucks templating",
+  "author": "werner@glinka.co",
+  "siteURL": "https://ms-bare-bone-starter.netlify.app/",
+  "siteOwner": "Werner Glinka",
+
+  "_comment4": "Search engine validation codes (leave empty if not needed)",
+  "validate": {
+    "google": "",
+    "ms": ""
+  },
+
+  "_comment5": "Social media profile links (add your URLs here)",
+  "social": {
+    "linkedIn": "",
+    "github": ""
+  },
+
+  "_comment6": "Default social sharing image (used when pages don't specify their own)",
+  "socialImage": "/assets/images/metalsmith/starter/social.png"
+}

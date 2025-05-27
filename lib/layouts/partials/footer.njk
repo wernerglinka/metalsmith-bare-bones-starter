@@ -1,0 +1,24 @@
+{#
+  FOOTER PARTIAL - Site footer with version info and copyright
+  This partial shows how to use custom filters and global metadata
+#}
+
+<footer>
+  <div class="container">
+    {#
+      Display version information using global metadata
+      These variables are set in metalsmith.js and available to all templates
+    #}
+    <p>Metalsmith version: {{ msVersion }}</p>
+    <p>Node version: {{ nodeVersion }}</p>
+
+    {#
+      Copyright notice using a custom filter
+      The thisYear filter is defined in lib/assets/nunjucks-filters.js
+      It automatically gets the current year so you don't have to update it manually
+    #}
+    <p class="copyright">
+      © {{ "" | thisYear }} - Build with Metalsmith
+    </p>
+  </div>
+</footer>
