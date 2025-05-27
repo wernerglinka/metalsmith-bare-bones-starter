@@ -46,7 +46,7 @@ const thisDirectory = dirname( thisFile ); // Gets the directory containing this
 const mainFile = process.argv[ 1 ]; // Gets the file that was executed by Node.js
 
 // Import Nunjucks filters
-import nunjucksFilters from './lib/assets/nunjucks-filters.js';
+import nunjucksFilters from './lib/nunjucks-filters.js';
 
 /**
  * Configure the template engine (Nunjucks)
@@ -96,6 +96,23 @@ metalsmith
     msVersion: dependencies.metalsmith, // Metalsmith version for footer
     nodeVersion: process.version // Node.js version for footer
   } )
+
+  /**
+   * PLUGIN CHAIN - ORDER MATTERS!
+   * The order of plugins is crucial because each plugin processes the files
+   * and passes them to the next plugin. Think of it as an assembly line:
+   *
+   * 1. drafts()      - Remove draft files first (before processing)
+   * 2. metadata()    - Add global data that other plugins might need
+   * 3. markdown()    - Convert .md to .html (before permalinks and templates)
+   * 4. permalinks()  - Restructure URLs (before templates, so templates know final URLs)
+   * 5. layouts()     - Apply templates (needs final content and URLs)
+   * 7. assets()      - Copy static files (can happen anytime)
+   *
+   * CHANGING PLUGIN ORDER:
+   * Be careful when reordering plugins! Some depend on others having run first.
+   * If something breaks, check if the plugin order makes sense.
+   */
 
   /**
    * Filter out draft files in production
