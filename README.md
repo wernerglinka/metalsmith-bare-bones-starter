@@ -7,6 +7,8 @@
   Metalsmith bare-bones starter
 </h1>
 
+> **This starter is deprecated. Use the [Metalsmith2025 Simple Starter](https://github.com/wernerglinka/metalsmith2025-simple-starter) instead!**
+
 Start off your Metalsmith journey with this bare-bones boilerplate. This starter includes Markdown content and Nunjucks templating. Check out a [demo of this starter](https://metalsmith-bare-bones-starter.netlify.app/).
 
 ## Quick start
@@ -16,7 +18,7 @@ Start off your Metalsmith journey with this bare-bones boilerplate. This starter
     Clone the starter repository to create a new site.
 
     ```shell
-    git clone https://github.com/wernerglinka/metalsmith-bare-bones-starter.git new-site 
+    git clone https://github.com/wernerglinka/metalsmith-bare-bones-starter.git new-site
     ```
 
 1.  **Start developing.**
@@ -66,9 +68,9 @@ A quick look at the top-level files and directories you'll see in this Metalsmit
 
 5.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
 
-7.  **`.prettier.config.js`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
+6.  **`.prettier.config.js`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
 
-6.  **`.prettierignore`**: This file tells prettier what files it should ignore.
+7.  **`.prettierignore`**: This file tells prettier what files it should ignore.
 
 8.  **`LICENSE`**: This Metalsmith starter is licensed under the MIT license.
 
@@ -82,7 +84,7 @@ A quick look at the top-level files and directories you'll see in this Metalsmit
 
 ## Learn more about Metalsmith
 
-Looking for more guidance? Full documentation for Metalsmith can be found [on the website](https://www.metalsmith.io). 
+Looking for more guidance? Full documentation for Metalsmith can be found [on the website](https://www.metalsmith.io).
 
 ## Deploy
 
